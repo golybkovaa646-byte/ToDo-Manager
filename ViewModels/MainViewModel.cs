@@ -1,9 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
-using System.Windows;
-using ToDo_Manager.Date;
 using ToDo_Manager.Models;
 using ToDo_Manager.Services;
 
@@ -11,11 +8,11 @@ namespace ToDo_Manager.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly ToDoContext _db;
+        private readonly ITaskService _taskService;
         private readonly IMessageService _messageService;
 
         public ObservableCollection<Priority> Priorities { get; } =
-                new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
+            new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
 
         [ObservableProperty]
         private Priority newTaskPriority = Priority.Medium;
@@ -23,12 +20,13 @@ namespace ToDo_Manager.ViewModels
         [ObservableProperty]
         private string newTaskTitle = string.Empty;
 
-        public ObservableCollection<TaskItem> Tasks { get; set; } = new();
+        public ObservableCollection<TaskItem> Tasks { get; } = new();
 
-        public MainViewModel(ToDoContext db, IMessageService messageService)
+        public MainViewModel(ITaskService taskService, IMessageService messageService)
         {
-            _db = db;
+            _taskService = taskService;
             _messageService = messageService;
+
             LoadTasks();
         }
 
@@ -37,6 +35,7 @@ namespace ToDo_Manager.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewTaskTitle))
                 return;
+
             try
             {
                 var task = new TaskItem
@@ -45,10 +44,9 @@ namespace ToDo_Manager.ViewModels
                     Priority = NewTaskPriority
                 };
 
-                _db.Tasks.Add(task);
-                await _db.SaveChangesAsync();
-
+                await _taskService.AddAsync(task);
                 Tasks.Add(task);
+
                 NewTaskTitle = string.Empty;
                 NewTaskPriority = Priority.Medium;
             }
@@ -58,14 +56,12 @@ namespace ToDo_Manager.ViewModels
             }
         }
 
-
         [RelayCommand]
         private async void DeleteTask(TaskItem task)
         {
             try
             {
-                _db.Tasks.Remove(task);
-                await _db.SaveChangesAsync();
+                await _taskService.DeleteAsync(task);
                 Tasks.Remove(task);
             }
             catch (Exception ex)
@@ -78,7 +74,8 @@ namespace ToDo_Manager.ViewModels
         {
             try
             {
-                var items = await _db.Tasks.AsTracking().ToListAsync();
+                var items = await _taskService.GetAllAsync();
+
                 Tasks.Clear();
                 foreach (var item in items)
                     Tasks.Add(item);
@@ -89,12 +86,45 @@ namespace ToDo_Manager.ViewModels
             }
         }
 
-    
-        
-
-        partial void OnNewTaskTitleChanged(string oldValue, string newValue)
+        [RelayCommand]
+        private async void EditTask(TaskItem task)
         {
-            
+            try
+            {
+                await _taskService.UpdateAsync(task);
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError($"Error editing task: {ex.Message}");
+            }
         }
+
+        [RelayCommand]
+        private void StartEdit(TaskItem task)
+        {
+            task.IsEditing = true;
+        }
+
+        [RelayCommand]
+        private async void FinishEdit(TaskItem task)
+        {
+            try
+            {
+                task.IsEditing = false;
+                await _taskService.UpdateAsync(task);
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError($"Error editing task: {ex.Message}");
+            }
+        }
+
+        [RelayCommand]
+        private void CancelEdit(TaskItem task)
+        {
+            task.IsEditing = false;
+        }
+
+
     }
 }

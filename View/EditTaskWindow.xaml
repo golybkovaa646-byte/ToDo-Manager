@@ -1,0 +1,34 @@
+﻿<Window x:Class="ToDo_Manager.View.EditTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       
+        Title="Редактирование задачи"
+        Height="250"
+        Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Название:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15"/>
+
+        <TextBlock Text="Приоритет:" FontWeight="Bold"/>
+        <ComboBox x:Name="PriorityComboBox"
+          SelectedItem="{Binding Priority}"
+          Margin="0,5,0,15"/>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Сохранить"
+                    Width="100"
+                    Margin="0,0,10,0"
+                    Command="{Binding SaveCommand}" />
+
+            <Button Content="Отмена"
+        Width="100"
+        Command="{Binding CancelCommand}" />
+
+        </StackPanel>
+
+    </StackPanel>
+</Window>

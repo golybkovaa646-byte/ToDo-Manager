@@ -32,6 +32,12 @@ namespace ToDo_Manager.Services
             _db.Tasks.Remove(item);
             await _db.SaveChangesAsync();
         }
+        public async Task UpdateAsync(TaskItem item)
+        {
+            _db.Tasks.Update(item);
+            await _db.SaveChangesAsync();
+        }
+
     }
 
 }

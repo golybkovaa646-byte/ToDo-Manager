@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ToDo_Manager.Models;
+using ToDo_Manager.Services;
 using ToDo_Manager.ViewModels;
 
 namespace ToDo_Manager.View
@@ -25,6 +27,20 @@ namespace ToDo_Manager.View
             DataContext = vm;
 
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (TaskItem)((Button)sender).DataContext;
+
+            var vm = new EditTaskViewModel(task,
+                                           App.AppHost.Services.GetRequiredService<ITaskService>(),
+                                           App.AppHost.Services.GetRequiredService<IMessageService>());
+
+            var window = new EditTaskWindow(vm);
+            window.ShowDialog();
+        }
+
+
 
     }
 }

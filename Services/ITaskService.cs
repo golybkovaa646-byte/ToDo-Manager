@@ -10,5 +10,7 @@ namespace ToDo_Manager.Services
         Task<List<TaskItem>> GetAllAsync();
         Task AddAsync(TaskItem item);
         Task DeleteAsync(TaskItem item);
+        Task UpdateAsync(TaskItem item);
+
     }
 }

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToDo_Manager.Date;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace ToDo_Manager.Models
 {
@@ -15,6 +17,10 @@ namespace ToDo_Manager.Models
 
         [ObservableProperty]
         private bool isCompleted;
+
+        [NotMapped]
+        [ObservableProperty]
+        private bool isEditing;
 
         [ObservableProperty]
         private Priority priority = Priority.Medium;

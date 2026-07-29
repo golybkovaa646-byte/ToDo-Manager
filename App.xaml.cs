@@ -22,6 +22,9 @@ namespace ToDo_Manager
 
                     services.AddSingleton<IMessageService, MessageService>();
 
+                    services.AddTransient<ITaskService, TaskService>();
+                    services.AddTransient<EditTaskViewModel>();
+
 
                     services.AddTransient<MainViewModel>();
 

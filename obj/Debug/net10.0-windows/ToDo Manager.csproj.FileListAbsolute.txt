@@ -164,3 +164,6 @@ C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.EventLog.dll
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.EventSource.dll
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\EditTaskWindow.baml
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\EditTaskWindow.g.cs
