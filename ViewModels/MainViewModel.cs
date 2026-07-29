@@ -11,6 +11,12 @@ namespace ToDo_Manager.ViewModels
     {
         private readonly ToDoContext _db = new();
 
+        public ObservableCollection<Priority> Priorities { get; } =
+                new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
+
+        [ObservableProperty]
+        private Priority newTaskPriority = Priority.Medium;
+
         [ObservableProperty]
         private string newTaskTitle = string.Empty;
 
@@ -27,13 +33,20 @@ namespace ToDo_Manager.ViewModels
             if (string.IsNullOrWhiteSpace(NewTaskTitle))
                 return;
 
-            var task = new TaskItem { Title = NewTaskTitle };
+            var task = new TaskItem
+            {
+                Title = NewTaskTitle,
+                Priority = NewTaskPriority
+            };
+
             _db.Tasks.Add(task);
             await _db.SaveChangesAsync();
 
             Tasks.Add(task);
             NewTaskTitle = string.Empty;
+            NewTaskPriority = Priority.Medium;
         }
+
 
         [RelayCommand]
         private async void DeleteTask(TaskItem task)

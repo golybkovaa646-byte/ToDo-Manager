@@ -16,6 +16,9 @@ namespace ToDo_Manager.Models
         [ObservableProperty]
         private bool isCompleted;
 
+        [ObservableProperty]
+        private Priority priority = Priority.Medium;
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
 

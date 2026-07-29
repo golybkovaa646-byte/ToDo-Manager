@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDo_Manager.Date;
 
@@ -10,9 +11,11 @@ using ToDo_Manager.Date;
 namespace ToDo_Manager.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    partial class ToDoContextModelSnapshot : ModelSnapshot
+    [Migration("20260729070815_AddPriorityToTasks")]
+    partial class AddPriorityToTasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.10");
