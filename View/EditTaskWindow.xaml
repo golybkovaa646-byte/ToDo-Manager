@@ -7,10 +7,10 @@
         WindowStartupLocation="CenterScreen">
 
     <StackPanel Margin="20">
-        <TextBlock Text="Название:" FontWeight="Bold"/>
+        <TextBlock Text="Description:" FontWeight="Bold"/>
         <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15"/>
 
-        <TextBlock Text="Приоритет:" FontWeight="Bold"/>
+        <TextBlock Text="Priority:" FontWeight="Bold"/>
         <ComboBox SelectedItem="{Binding Priority}"
                   ItemsSource="{Binding Priorities}"
                   Margin="0,5,0,15"/>
