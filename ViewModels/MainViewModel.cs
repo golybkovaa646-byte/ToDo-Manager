@@ -9,7 +9,7 @@ namespace ToDo_Manager.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly ToDoContext _db = new();
+        private readonly ToDoContext _db;
 
         public ObservableCollection<Priority> Priorities { get; } =
                 new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
@@ -22,8 +22,9 @@ namespace ToDo_Manager.ViewModels
 
         public ObservableCollection<TaskItem> Tasks { get; set; } = new();
 
-        public MainViewModel()
+        public MainViewModel(ToDoContext db)
         {
+            _db = db;
             LoadTasks();
         }
 
