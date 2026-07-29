@@ -12,8 +12,8 @@ namespace ToDo_Manager.View
         {
             InitializeComponent();
             DataContext = vm;
-            PriorityComboBox.ItemsSource = Enum.GetValues(typeof(Priority));
-            vm.RequestClose += () => this.Close();
+
+            vm.RequestClose += Close;
         }
     }
 }

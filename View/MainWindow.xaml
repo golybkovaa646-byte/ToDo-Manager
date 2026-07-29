@@ -8,8 +8,6 @@
         Width="800"
         WindowStartupLocation="CenterScreen">
 
-    
-
     <DockPanel Margin="10">
 
         <!-- Верхняя панель -->
@@ -25,53 +23,62 @@
         </StackPanel>
 
         <!-- Список задач -->
-        <ListBox ItemsSource="{Binding Tasks}">
-    <ListBox.ItemTemplate>
-        <DataTemplate DataType="{x:Type models:TaskItem}">
-            <Grid Margin="0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="40"/>
-                </Grid.ColumnDefinitions>
+        <ListBox Margin="3" ItemsSource="{Binding Tasks}"
+                 HorizontalContentAlignment="Stretch">
+            <!-- ВАЖНО -->
 
-                <CheckBox Grid.Column="0"
-                          VerticalAlignment="Center"
-                          IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:TaskItem}">
 
-                <TextBlock Grid.Column="1"
-                           Text="{Binding Title}"
-                           Margin="8,0"
-                           MaxWidth="300"
-                           TextWrapping="Wrap" />
+                    <Grid Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="2"
-                           Text="{Binding Priority}"
-                           Margin="8,0"
-                           Foreground="DarkOrange"
-                           VerticalAlignment="Center" />
+                        <CheckBox Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
 
-                        <Button Grid.Column="3"
-                            Content="✎"
-                            MaxHeight="30"
-                            MaxWidth="20"
-                            Click="Edit_Click"/>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Title}"
+                                   Margin="8,0"
+                                   MaxWidth="450"
+                                   TextWrapping="Wrap" />
 
-                        <Button Grid.Column="4"
-                        Content="✖"
-                        MaxHeight="30"
-                        MaxWidth="20"
-                        Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                        CommandParameter="{Binding}" />
-            </Grid>
-        </DataTemplate>
-    </ListBox.ItemTemplate>
-</ListBox>
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Priority}"
+                                   Margin="8,0"
+                                   Foreground="DarkOrange"
+                                   VerticalAlignment="Center" />
 
+                        <StackPanel Grid.Column="4"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
 
+                            <Button Content="✎"
+                                    Margin="4"
+                                    MaxHeight="20"
+                                    MaxWidth="20"
+                                    Click="Edit_Click"/>
 
+                            <Button Content="✖"
+                                    Margin="4"
+                                    MaxHeight="20"
+                                    MaxWidth="20"
+                                    Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                    CommandParameter="{Binding}" />
+                        </StackPanel>
+
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
 
     </DockPanel>
 </Window>
