@@ -1,14 +1,32 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using ToDo_Manager.Date;
 
 namespace ToDo_Manager.Models
 {
-    public class TaskItem
+    public partial class TaskItem : ObservableObject
     {
         public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public bool IsCompleted { get; set; }
+
+        [ObservableProperty]
+        private string title = string.Empty;
+
+        [ObservableProperty]
+        private bool isCompleted;
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+
+        partial void OnIsCompletedChanged(bool oldValue, bool newValue)
+        {
+            using var db = new ToDoContext();
+            db.Tasks.Update(this);
+            db.SaveChanges();
+        }
+
     }
+
+
 }

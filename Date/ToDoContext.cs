@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToDo_Manager.Models;
-
+using System.IO;
 
 namespace ToDo_Manager.Date
 {
@@ -13,7 +13,9 @@ namespace ToDo_Manager.Date
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source=todo.db");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "todo.db");
+            options.UseSqlite($"Data Source={path}");
         }
+
     }
 }
