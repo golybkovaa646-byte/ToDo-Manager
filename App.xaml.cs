@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using ToDo_Manager.Date;
-using ToDo_Manager.ViewModels;
+using ToDo_Manager.Services;
 using ToDo_Manager.View;
+using ToDo_Manager.ViewModels;
 
 namespace ToDo_Manager
 {
@@ -19,7 +20,9 @@ namespace ToDo_Manager
                  
                     services.AddDbContext<ToDoContext>();
 
-                    
+                    services.AddSingleton<IMessageService, MessageService>();
+
+
                     services.AddTransient<MainViewModel>();
 
                 
@@ -31,7 +34,7 @@ namespace ToDo_Manager
         protected override async void OnStartup(StartupEventArgs e)
         {
             await AppHost.StartAsync();
-
+        
             var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
 
