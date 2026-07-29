@@ -16,11 +16,11 @@
                   Margin="0,5,0,15"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Сохранить"
+            <Button Content="Save"
                     Width="100"
                     Margin="0,0,10,0"
                     Command="{Binding SaveCommand}" />
-            <Button Content="Отмена"
+            <Button Content="Cancel"
                     Width="100"
                     Command="{Binding CancelCommand}" />
         </StackPanel>

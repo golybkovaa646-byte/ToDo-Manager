@@ -33,47 +33,55 @@
                     <Grid Margin="0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="35"/>
+                            <!-- чекбокс -->
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="120"/>
+                            <!-- текст -->
                             <ColumnDefinition Width="*"/>
+                            <!-- пустое пространство -->
                             <ColumnDefinition Width="Auto"/>
+                            <!-- приоритет -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- кнопки -->
                         </Grid.ColumnDefinitions>
 
                         <CheckBox Grid.Column="0"
-                                  VerticalAlignment="Center"
-                                  IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
+                            VerticalAlignment="Center"
+                            IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
 
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding Title}"
-                                   Margin="8,0"
-                                   MaxWidth="450"
-                                   TextWrapping="Wrap" />
+                            Text="{Binding Title}"
+                            Margin="8,0"
+                            MaxWidth="450"
+                            TextWrapping="Wrap" />
 
-                        <TextBlock Grid.Column="2"
-                                   Text="{Binding Priority}"
-                                   Margin="8,0"
-                                   Foreground="DarkOrange"
-                                   VerticalAlignment="Center" />
+                        <!-- ПРИОРИТЕТ СПРАВА -->
+                        <TextBlock Grid.Column="3"
+                            Text="{Binding Priority}"
+                            Margin="8,0"
+                            Foreground="DarkOrange"
+                            VerticalAlignment="Center" />
 
+                        <!-- КНОПКИ СПРАВА -->
                         <StackPanel Grid.Column="4"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
 
                             <Button Content="✎"
-                                    Margin="4"
-                                    MaxHeight="20"
-                                    MaxWidth="20"
-                                    Click="Edit_Click"/>
+                                Margin="4"
+                                MaxHeight="20"
+                                MaxWidth="20"
+                                Click="Edit_Click"/>
 
                             <Button Content="✖"
-                                    Margin="4"
-                                    MaxHeight="20"
-                                    MaxWidth="20"
-                                    Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                    CommandParameter="{Binding}" />
+                                Margin="4"
+                                MaxHeight="20"
+                                MaxWidth="20"
+                                Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                CommandParameter="{Binding}" />
                         </StackPanel>
 
                     </Grid>
+
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
