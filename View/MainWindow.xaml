@@ -4,119 +4,141 @@
         xmlns:vm="clr-namespace:ToDo_Manager.ViewModels"
         xmlns:models="clr-namespace:ToDo_Manager.Models"
         Title="ToDo Manager"
-        Height="550"
-        Width="800"
-        WindowStartupLocation="CenterScreen" MinHeight="300" MinWidth="700">
+        Height="600"
+        Width="950"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="400" MinWidth="850">
 
-    <DockPanel Margin="4">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <!-- Левая панель -->
+            <ColumnDefinition Width="*"/>
+            <!-- Правая часть -->
+        </Grid.ColumnDefinitions>
 
-        <!-- Верхняя панель -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="55">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Title:" FontWeight="Bold"/>
-                <TextBlock Text="Maximum 25 characters." FontWeight="Bold" Foreground="Gray" FontSize="9" />
-                <TextBox Width="250" Margin="0,0,10,0"
-                     Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="26"
-                     />
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Description:" FontWeight="Bold"/>
-                  
-                <TextBox Width="250" Margin="0,0,10,0"
-                         Height="30"
-                     Text="{Binding NewTaskDescription, UpdateSourceTrigger=PropertyChanged}"
+        <!-- Левая панель ввода -->
+        <StackPanel Grid.Column="0" Margin="4">
+            <TextBlock Text="Create Task" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Title" FontWeight="Bold"/>
+            <TextBox Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="25"
+                     Margin="0,0,0,10"/>
+
+            <TextBlock Text="Description" FontWeight="Bold"/>
+            <TextBox Text="{Binding NewTaskDescription, UpdateSourceTrigger=PropertyChanged}"
+                     Height="80"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     
-                     />
-            </StackPanel>
+                     Margin="0,0,0,10"/>
 
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Priority:" FontWeight="Bold"/>
-                <ComboBox Width="120" Margin="0,0,10,0"
+            <TextBlock Text="Priority" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding Priorities}"
                       SelectedItem="{Binding NewTaskPriority}"
-                      ItemsSource="{Binding Priorities}" />
-            </StackPanel>
-            <Button Content="Add" Command="{Binding AddTaskCommand}" Height="35" Width="70" />
+                      Margin="0,0,0,10"/>
+
+            <Button Content="Add Task"
+                    Command="{Binding AddTaskCommand}"
+                    Height="40"
+                    Background="#4CAF50"
+                    Foreground="White"
+                    FontWeight="Bold"/>
         </StackPanel>
 
-        <!-- Список задач -->
-        <ListBox Margin="8" ItemsSource="{Binding Tasks}"
-                 HorizontalContentAlignment="Stretch"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <!-- ВАЖНО -->
+        <!-- Правая часть -->
+        <DockPanel Grid.Column="1" Margin="20,0,0,0">
 
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:TaskItem}">
-                    <Grid Margin="0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35"/>
-                            <!-- чекбокс -->
-                            <ColumnDefinition Width="*"/>
-                            <!-- текст + дата -->
-                            <ColumnDefinition Width="Auto"/>
-                            <!-- приоритет + кнопки -->
-                        </Grid.ColumnDefinitions>
+            <!-- Фильтры + кнопка очистки фильтров -->
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Filters:" FontWeight="Bold" Margin="0,0,10,0"/>
 
-                        <!-- Чекбокс -->
-                        <CheckBox Grid.Column="0"
-                  VerticalAlignment="Center"
-                  IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
+                <ComboBox Width="150"
+                          ItemsSource="{Binding Priorities}"
+                          SelectedItem="{Binding SelectedFilterPriority}"
+                          Margin="0,0,10,0"/>
 
-                        <!-- Титул задачи +  описание + дата -->
-                        <StackPanel Grid.Column="1" Margin="8,0">
-                            <TextBlock Text="{Binding Title}"
-                                       FontWeight="Bold"
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top"
-                                       />
+                <CheckBox Content="Show completed"
+                          IsChecked="{Binding ShowCompleted}"/>
 
-                            <TextBlock Text="{Binding Description}"
-                                       FontWeight="Black"
-               FontSize="12"
-               Foreground="Gray"
-               TextWrapping="Wrap"
-               TextTrimming="WordEllipsis"/>
+                <Button Content="Clear Filters"
+                        Margin="20,0,0,0"
+                        Command="{Binding ClearFiltersCommand}"
+                        Background="Orange"
+                        Foreground="White"
+                        FontWeight="Bold"/>
 
-                            <TextBlock Text="{Binding CreatedAt, StringFormat='Создано: {0:dd.MM.yyyy HH:mm}'}"
-                       Foreground="Gray"
-                       FontSize="11"/>
-                        </StackPanel>
+            </StackPanel>
 
-                        <!-- Правая панель -->
-                        <StackPanel Grid.Column="2"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right">
+            <!-- Список задач -->
+            <ListBox ItemsSource="{Binding FilteredTasks}"
+                     HorizontalContentAlignment="Stretch"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                            <TextBlock Text="{Binding Priority}"
-                       Margin="8,0"
-                       Foreground="DarkOrange"/>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:TaskItem}">
+                        <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Button Content="✎"
-                         Margin="4"
-                        Width="20" Height="20"
-                        Command="{Binding DataContext.OpenEditWindowCommand,
-                        RelativeSource={RelativeSource AncestorType=ListBox}}"
-                        CommandParameter="{Binding}" />
+                                <!-- Чекбокс -->
+                                <CheckBox Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
 
+                                <!-- Текст -->
+                                <StackPanel Grid.Column="1" Margin="8,0">
+                                    <TextBlock Text="{Binding Title}"
+                                               FontWeight="Bold"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"/>
 
-                            <Button Content="✖"
-                    Margin="4"
-                    Width="20" Height="20"
-                    Command="{Binding DataContext.DeleteTaskCommand,
-                              RelativeSource={RelativeSource AncestorType=ListBox}}"
-                    CommandParameter="{Binding}" />
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="12"
+                                               Foreground="Gray"
+                                               TextWrapping="Wrap"
+                                               TextTrimming="WordEllipsis"/>
 
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}"
+                                               Foreground="Gray"
+                                               FontSize="11"/>
+                                </StackPanel>
 
-            </ListBox.ItemTemplate>
+                                <!-- Правая панель -->
+                                <StackPanel Grid.Column="2"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right">
 
-        </ListBox>
+                                    <TextBlock Text="{Binding Priority}"
+                                               Margin="8,0"
+                                               Foreground="DarkOrange"/>
 
-    </DockPanel>
+                                    <Button Content="✎"
+                                            Margin="4"
+                                            Width="24" Height="24"
+                                            Command="{Binding DataContext.OpenEditWindowCommand,
+                                            RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" />
+
+                                    <Button Content="✖"
+                                            Margin="4"
+                                            Width="24" Height="24"
+                                            Command="{Binding DataContext.DeleteTaskCommand,
+                                            RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </DockPanel>
+    </Grid>
 </Window>

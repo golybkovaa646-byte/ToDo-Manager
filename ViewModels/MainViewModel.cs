@@ -24,12 +24,35 @@ namespace ToDo_Manager.ViewModels
         [ObservableProperty]
         private string newTaskDescription = string.Empty;
 
+        [ObservableProperty]
+        private Priority? selectedFilterPriority;
+
+        [ObservableProperty]
+        private bool showCompleted = false;
+
+        public IEnumerable<TaskItem> FilteredTasks =>
+     Tasks.Where(t =>
+         (SelectedFilterPriority == null || t.Priority == SelectedFilterPriority)
+         &&
+         (ShowCompleted ? t.IsCompleted : true)
+     );
+
+
+
+
         public ObservableCollection<TaskItem> Tasks { get; } = new();
 
         [RelayCommand]
         private void OpenEditWindow(TaskItem task)
         {
             _dialogService.EditTask(task);
+        }
+
+        [RelayCommand]
+        private void ClearFilters()
+        {
+            SelectedFilterPriority = null;
+            ShowCompleted = false;
         }
 
 
@@ -41,6 +64,17 @@ namespace ToDo_Manager.ViewModels
 
             LoadTasks();
         }
+
+        partial void OnSelectedFilterPriorityChanged(Priority? oldValue, Priority? newValue)
+        {
+            OnPropertyChanged(nameof(FilteredTasks));
+        }
+
+        partial void OnShowCompletedChanged(bool oldValue, bool newValue)
+        {
+            OnPropertyChanged(nameof(FilteredTasks));
+        }
+
 
         partial void OnNewTaskTitleChanged(string oldValue, string newValue)
         {
