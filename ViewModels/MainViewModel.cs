@@ -10,6 +10,7 @@ namespace ToDo_Manager.ViewModels
     {
         private readonly ITaskService _taskService;
         private readonly IMessageService _messageService;
+        private readonly IDialogService _dialogService;
 
         public ObservableCollection<Priority> Priorities { get; } =
             new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
@@ -25,10 +26,18 @@ namespace ToDo_Manager.ViewModels
 
         public ObservableCollection<TaskItem> Tasks { get; } = new();
 
-        public MainViewModel(ITaskService taskService, IMessageService messageService)
+        [RelayCommand]
+        private void OpenEditWindow(TaskItem task)
+        {
+            _dialogService.EditTask(task);
+        }
+
+
+        public MainViewModel(ITaskService taskService, IMessageService messageService, IDialogService dialogService)
         {
             _taskService = taskService;
             _messageService = messageService;
+            _dialogService = dialogService;
 
             LoadTasks();
         }
@@ -125,31 +134,7 @@ namespace ToDo_Manager.ViewModels
             }
         }
 
-        [RelayCommand]
-        private void StartEdit(TaskItem task)
-        {
-            task.IsEditing = true;
-        }
-
-        [RelayCommand]
-        private async void FinishEdit(TaskItem task)
-        {
-            try
-            {
-                task.IsEditing = false;
-                await _taskService.UpdateAsync(task);
-            }
-            catch (Exception ex)
-            {
-                _messageService.ShowError($"Error editing task: {ex.Message}");
-            }
-        }
-
-        [RelayCommand]
-        private void CancelEdit(TaskItem task)
-        {
-            task.IsEditing = false;
-        }
+       
 
 
     }

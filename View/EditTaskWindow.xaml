@@ -7,8 +7,10 @@
         WindowStartupLocation="CenterScreen">
 
     <StackPanel Margin="20">
-        <TextBlock Text="Description:" FontWeight="Bold"/>
-        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15"/>
+        <TextBlock Text="Title:" FontWeight="Bold"/>
+        <TextBlock Text="Maximum 25 characters." FontWeight="Bold" Foreground="Gray" FontSize="9" />
+        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15" MaxLength="26"/>
+        
 
         <TextBlock Text="Description:" FontWeight="Bold"/>
         <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15" AcceptsReturn="True" Height="80" TextWrapping="Wrap"/>

@@ -28,17 +28,7 @@ namespace ToDo_Manager.View
 
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-            var task = (TaskItem)((Button)sender).DataContext;
-
-            var vm = new EditTaskViewModel(task,
-                                           App.AppHost.Services.GetRequiredService<ITaskService>(),
-                                           App.AppHost.Services.GetRequiredService<IMessageService>());
-
-            var window = new EditTaskWindow(vm);
-            window.ShowDialog();
-        }
+        
 
 
 

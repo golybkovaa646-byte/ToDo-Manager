@@ -22,7 +22,7 @@ namespace ToDo_Manager
                     services.AddDbContext<ToDoContext>();
 
                     services.AddSingleton<IMessageService, MessageService>();
-
+                    services.AddTransient<IDialogService, DialogService>();
                     services.AddTransient<ITaskService, TaskService>();
                     services.AddTransient<EditTaskViewModel>();
 

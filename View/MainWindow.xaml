@@ -4,35 +4,45 @@
         xmlns:vm="clr-namespace:ToDo_Manager.ViewModels"
         xmlns:models="clr-namespace:ToDo_Manager.Models"
         Title="ToDo Manager"
-        Height="450"
+        Height="550"
         Width="800"
         WindowStartupLocation="CenterScreen" MinHeight="300" MinWidth="700">
 
-    <DockPanel Margin="10">
+    <DockPanel Margin="4">
 
         <!-- Верхняя панель -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="35">
-            <TextBox Width="250" Margin="0,0,10,0"
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="55">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Title:" FontWeight="Bold"/>
+                <TextBlock Text="Maximum 25 characters." FontWeight="Bold" Foreground="Gray" FontSize="9" />
+                <TextBox Width="250" Margin="0,0,10,0"
                      Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="26"
                      />
-
-            <TextBox Width="250" Margin="0,0,10,0"
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Description:" FontWeight="Bold"/>
+                  
+                <TextBox Width="250" Margin="0,0,10,0"
+                         Height="30"
                      Text="{Binding NewTaskDescription, UpdateSourceTrigger=PropertyChanged}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      
                      />
+            </StackPanel>
 
-            <ComboBox Width="120" Margin="0,0,10,0"
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Priority:" FontWeight="Bold"/>
+                <ComboBox Width="120" Margin="0,0,10,0"
                       SelectedItem="{Binding NewTaskPriority}"
                       ItemsSource="{Binding Priorities}" />
-
-            <Button Content="Добавить" Command="{Binding AddTaskCommand}" />
+            </StackPanel>
+            <Button Content="Add" Command="{Binding AddTaskCommand}" Height="35" Width="70" />
         </StackPanel>
 
         <!-- Список задач -->
-        <ListBox Margin="3" ItemsSource="{Binding Tasks}"
+        <ListBox Margin="8" ItemsSource="{Binding Tasks}"
                  HorizontalContentAlignment="Stretch"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <!-- ВАЖНО -->
@@ -86,9 +96,12 @@
                        Foreground="DarkOrange"/>
 
                             <Button Content="✎"
-                    Margin="4"
-                    Width="20" Height="20"
-                    Click="Edit_Click"/>
+                         Margin="4"
+                        Width="20" Height="20"
+                        Command="{Binding DataContext.OpenEditWindowCommand,
+                        RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding}" />
+
 
                             <Button Content="✖"
                     Margin="4"
