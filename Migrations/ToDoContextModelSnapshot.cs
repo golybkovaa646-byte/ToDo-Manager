@@ -26,6 +26,10 @@ namespace ToDo_Manager.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("INTEGER");
 

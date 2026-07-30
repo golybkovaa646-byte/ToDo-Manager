@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ToDo_Manager.Models;
 
-namespace ToDo_Manager.Services
+namespace ToDo_Manager.Services.Interface
 {
     public interface ITaskService
     {

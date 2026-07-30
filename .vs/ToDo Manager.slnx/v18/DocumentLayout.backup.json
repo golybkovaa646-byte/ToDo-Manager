@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\services\\imessageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:services\\imessageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\date\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,68 +34,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IMessageService.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\IMessageService.cs",
-              "RelativeDocumentMoniker": "Services\\IMessageService.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\IMessageService.cs",
-              "RelativeToolTip": "Services\\IMessageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAANAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\TaskService.cs",
+              "RelativeDocumentMoniker": "Services\\TaskService.cs",
+              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\TaskService.cs",
+              "RelativeToolTip": "Services\\TaskService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-30T09:53:46.875Z",
+              "WhenOpened": "2026-07-30T10:09:48.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml",
               "RelativeDocumentMoniker": "View\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml",
-              "RelativeToolTip": "View\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml*",
+              "RelativeToolTip": "View\\MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-07-30T09:34:04.251Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "TaskItem.cs",
               "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Models\\TaskItem.cs",
               "RelativeDocumentMoniker": "Models\\TaskItem.cs",
               "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Models\\TaskItem.cs",
               "RelativeToolTip": "Models\\TaskItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-30T09:33:32.664Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MessageService.cs",
               "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\MessageService.cs",
               "RelativeDocumentMoniker": "Services\\MessageService.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\MessageService.cs*",
-              "RelativeToolTip": "Services\\MessageService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAyAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\Services\\MessageService.cs",
+              "RelativeToolTip": "Services\\MessageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-30T09:32:10.687Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
               "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\MainViewModel.cs*",
               "RelativeToolTip": "ViewModels\\MainViewModel.cs*",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowEQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwCUAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-29T11:49:57.727Z",
               "EditorCaption": ""

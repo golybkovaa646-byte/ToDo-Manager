@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using ToDo_Manager.Models;
-using ToDo_Manager.Services;
+using ToDo_Manager.Services.Interface;
 
 public partial class EditTaskViewModel : ObservableObject
 {
@@ -19,6 +19,9 @@ public partial class EditTaskViewModel : ObservableObject
     private string title;
 
     [ObservableProperty]
+    private string description;
+
+    [ObservableProperty]
     private Priority priority;
 
     public EditTaskViewModel(TaskItem task, ITaskService taskService, IMessageService messageService)
@@ -29,12 +32,14 @@ public partial class EditTaskViewModel : ObservableObject
 
         Title = task.Title;
         Priority = task.Priority;
+        Description = task.Description;
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
         OriginalTask.Title = Title;
+        OriginalTask.Description = Description;
         OriginalTask.Priority = Priority;
 
         await _taskService.UpdateAsync(OriginalTask);

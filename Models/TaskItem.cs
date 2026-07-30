@@ -16,6 +16,10 @@ namespace ToDo_Manager.Models
         private string title = string.Empty;
 
         [ObservableProperty]
+        private string description = string.Empty;
+
+
+        [ObservableProperty]
         private bool isCompleted;
 
         [NotMapped]

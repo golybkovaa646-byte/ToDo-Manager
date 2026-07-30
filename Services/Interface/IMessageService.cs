@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToDo_Manager.Services
+namespace ToDo_Manager.Services.Interface
 {
     public interface IMessageService
     {

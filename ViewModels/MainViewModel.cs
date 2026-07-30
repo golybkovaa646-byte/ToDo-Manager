@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using ToDo_Manager.Models;
-using ToDo_Manager.Services;
+using ToDo_Manager.Services.Interface;
 
 namespace ToDo_Manager.ViewModels
 {
@@ -20,6 +20,9 @@ namespace ToDo_Manager.ViewModels
         [ObservableProperty]
         private string newTaskTitle = string.Empty;
 
+        [ObservableProperty]
+        private string newTaskDescription = string.Empty;
+
         public ObservableCollection<TaskItem> Tasks { get; } = new();
 
         public MainViewModel(ITaskService taskService, IMessageService messageService)
@@ -30,6 +33,17 @@ namespace ToDo_Manager.ViewModels
             LoadTasks();
         }
 
+        partial void OnNewTaskTitleChanged(string oldValue, string newValue)
+        {
+            if (newValue.Length > 25)
+            {
+                NewTaskTitle = newValue[..25];
+                _messageService.ShowInfo("Maximum 25 characters. Your text will be shortened.");
+            }
+        }
+
+
+
         [RelayCommand]
         private async void AddTask()
         {
@@ -37,19 +51,25 @@ namespace ToDo_Manager.ViewModels
                 _messageService.ShowInfo("Task title cannot be empty.");
                 return;
             }
-                
+            if(string.IsNullOrWhiteSpace(NewTaskDescription))
+            {
+                _messageService.ShowInfo("Task description cannot be empty.");
+                return;
+            }
 
             try
             {
                 var task = new TaskItem
                 {
                     Title = NewTaskTitle,
+                    Description = NewTaskDescription,
                     Priority = NewTaskPriority
                 };
 
                 await _taskService.AddAsync(task);
                 Tasks.Add(task);
 
+                NewTaskDescription = string.Empty;
                 NewTaskTitle = string.Empty;
                 NewTaskPriority = Priority.Medium;
             }

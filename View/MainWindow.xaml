@@ -11,9 +11,18 @@
     <DockPanel Margin="10">
 
         <!-- Верхняя панель -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="35">
             <TextBox Width="250" Margin="0,0,10,0"
-                     Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="26"
+                     />
+
+            <TextBox Width="250" Margin="0,0,10,0"
+                     Text="{Binding NewTaskDescription, UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     
+                     />
 
             <ComboBox Width="120" Margin="0,0,10,0"
                       SelectedItem="{Binding NewTaskPriority}"
@@ -45,12 +54,21 @@
                   VerticalAlignment="Center"
                   IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
 
-                        <!-- Текст задачи + дата -->
+                        <!-- Титул задачи +  описание + дата -->
                         <StackPanel Grid.Column="1" Margin="8,0">
                             <TextBlock Text="{Binding Title}"
+                                       FontWeight="Bold"
                        TextWrapping="Wrap"
                        HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                       VerticalAlignment="Top"
+                                       />
+
+                            <TextBlock Text="{Binding Description}"
+                                       FontWeight="Black"
+               FontSize="12"
+               Foreground="Gray"
+               TextWrapping="Wrap"
+               TextTrimming="WordEllipsis"/>
 
                             <TextBlock Text="{Binding CreatedAt, StringFormat='Создано: {0:dd.MM.yyyy HH:mm}'}"
                        Foreground="Gray"
