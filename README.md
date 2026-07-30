@@ -10,7 +10,7 @@ A simple and elegant **WPF ToDo application** built with **MVVM**, **Entity Fram
 - Simple and adaptive UI
 
 ## Tech Stack
-- C# / .NET 8
+- C# / .NET 10
 - WPF + MVVM Toolkit
 - EF Core + SQLite
 - Microsoft.Extensions.Hosting
