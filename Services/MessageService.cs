@@ -16,5 +16,12 @@ namespace ToDo_Manager.Services
         {
             MessageBox.Show(message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        public bool ShowConfrime(string message)
+        {
+          var result =
+                MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return result == MessageBoxResult.Yes;
+        }
     }
 }

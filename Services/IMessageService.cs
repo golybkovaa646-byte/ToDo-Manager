@@ -8,6 +8,7 @@ namespace ToDo_Manager.Services
     {
         void ShowError(string message);
         void ShowInfo(string message);
+        bool ShowConfrime(string message);
     }
 
 }

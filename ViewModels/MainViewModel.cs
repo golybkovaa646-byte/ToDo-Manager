@@ -33,8 +33,11 @@ namespace ToDo_Manager.ViewModels
         [RelayCommand]
         private async void AddTask()
         {
-            if (string.IsNullOrWhiteSpace(NewTaskTitle))
+            if (string.IsNullOrWhiteSpace(NewTaskTitle)) {
+                _messageService.ShowInfo("Task title cannot be empty.");
                 return;
+            }
+                
 
             try
             {
@@ -61,6 +64,9 @@ namespace ToDo_Manager.ViewModels
         {
             try
             {
+                if(!_messageService.ShowConfrime($"Are you sure you want to delete the task '{task.Title}'?"))
+                    return;
+
                 await _taskService.DeleteAsync(task);
                 Tasks.Remove(task);
             }
