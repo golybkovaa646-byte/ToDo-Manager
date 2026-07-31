@@ -147,14 +147,22 @@ C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\bin\Debug\net10.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.csproj.AssemblyReference.cache
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\CreateTaskPanelMainWindow.baml
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\FiltersPanelMainWindow.baml
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\EditTaskWindow.baml
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\Common\TaskCard.g.cs
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\CreateTaskPanelMainWindow.g.cs
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\FiltersPanelMainWindow.g.cs
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\EditTaskWindow.g.cs
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\MainWindow.g.cs
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Pages\TasksPage.g.cs
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\App.g.cs
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager_MarkupCompile.cache
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager_MarkupCompile.lref
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\Common\TaskCard.baml
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\MainWindow.baml
+C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Pages\TasksPage.baml
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.g.resources
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.AssemblyInfoInputs.cache
@@ -167,9 +175,3 @@ C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.pdb
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ToDo Manager.genruntimeconfig.cache
 C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\ref\ToDo Manager.dll
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\Common\TaskCard.g.cs
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\CreateTaskPanelMainWindow.g.cs
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\FiltersPanelMainWindow.g.cs
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\Common\TaskCard.baml
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\CreateTaskPanelMainWindow.baml
-C:\Users\golyb\source\repos\ToDo Manager\ToDo Manager\obj\Debug\net10.0-windows\View\Controls\MainWindow\FiltersPanelMainWindow.baml

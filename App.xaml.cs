@@ -50,5 +50,8 @@ namespace ToDo_Manager
             await AppHost.StopAsync();
             base.OnExit(e);
         }
+        public static T GetService<T>() where T : class
+    => AppHost.Services.GetRequiredService<T>();
+
     }
 }
