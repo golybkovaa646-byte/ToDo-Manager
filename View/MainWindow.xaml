@@ -58,11 +58,9 @@
                         Command="{Binding NavigateTasksCommand}"
                         Style="{StaticResource SidebarButtonStyle}"/>
 
-                <Button Content="Weather"
-                        Command="{Binding NavigateWeatherCommand}"
-                        Style="{StaticResource SidebarButtonStyle}"/>
+                
 
-                <Button Content="Settings"
+                <Button Content="Settings (No Working)"
                         Command="{Binding NavigateSettingsCommand}"
                         Style="{StaticResource SidebarButtonStyle}"/>
 

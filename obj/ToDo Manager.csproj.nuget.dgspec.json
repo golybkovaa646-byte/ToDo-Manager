@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ToDo Manager.csproj": {}
+    "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\ToDo Manager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ToDo Manager.csproj": {
+    "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\ToDo Manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ToDo Manager.csproj",
+        "projectUniqueName": "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\ToDo Manager.csproj",
         "projectName": "ToDo Manager",
-        "projectPath": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ToDo Manager.csproj",
+        "projectPath": "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\ToDo Manager.csproj",
         "packagesPath": "C:\\Users\\golyb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\obj\\",
+        "outputPath": "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\golyb\\AppData\\Roaming\\NuGet\\NuGet.Config",

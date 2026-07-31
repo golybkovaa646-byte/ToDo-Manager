@@ -1,0 +1,22 @@
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+Release/
+Debug/
+
+# Publish output
+/publish/
+
+# Logs and temp
+*.log
+*.tmp
+
+# Database and cache
+*.db
+*.sqlite
+*.pdb

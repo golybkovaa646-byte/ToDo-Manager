@@ -1,33 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\",
+  "WorkspaceRootPath": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\date\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:date\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\pages\\taskspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\pages\\taskspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\viewmodels\\tasksviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\viewmodels\\tasksviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:viewmodels\\tasksviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\controls\\common\\taskcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\view\\pages\\taskspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\pages\\taskspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\view\\controls\\common\\taskcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\controls\\common\\taskcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\source\\repos\\todo manager\\todo manager\\view\\controls\\mainwindow\\filterspanelmainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|c:\\users\\golyb\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\todo-manager\\view\\controls\\mainwindow\\filterspanelmainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F114E386-2889-206D-DC79-317BA884D3A7}|ToDo Manager.csproj|solutionrelative:view\\controls\\mainwindow\\filterspanelmainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,43 +46,55 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "View\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml.cs",
-              "RelativeToolTip": "View\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAQwBkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T09:10:45.324Z",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-07-31T15:03:49.196Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ToDoContext.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\Date\\ToDoContext.cs",
+              "RelativeDocumentMoniker": "Date\\ToDoContext.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\Date\\ToDoContext.cs",
+              "RelativeToolTip": "Date\\ToDoContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T14:39:44.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:05:21.088Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\MainViewModel.cs",
-              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T09:05:21.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "TasksViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\TasksViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\ViewModels\\TasksViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\TasksViewModel.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\ViewModels\\TasksViewModel.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\ViewModels\\TasksViewModel.cs",
               "RelativeToolTip": "ViewModels\\TasksViewModel.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwLUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwLUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-31T09:05:19.614Z",
               "EditorCaption": ""
@@ -82,22 +102,10 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TasksPage.xaml",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Pages\\TasksPage.xaml",
-              "RelativeDocumentMoniker": "View\\Pages\\TasksPage.xaml",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Pages\\TasksPage.xaml",
-              "RelativeToolTip": "View\\Pages\\TasksPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-31T09:04:04.386Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\MainWindow.xaml",
               "RelativeDocumentMoniker": "View\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\MainWindow.xaml",
               "RelativeToolTip": "View\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-07-30T09:34:04.251Z",
@@ -105,11 +113,35 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "View\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\MainWindow.xaml.cs",
+              "RelativeToolTip": "View\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAQwBkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:10:45.324Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "TasksPage.xaml",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Pages\\TasksPage.xaml",
+              "RelativeDocumentMoniker": "View\\Pages\\TasksPage.xaml",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Pages\\TasksPage.xaml",
+              "RelativeToolTip": "View\\Pages\\TasksPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-31T09:04:04.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TaskCard.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Controls\\Common\\TaskCard.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Controls\\Common\\TaskCard.xaml.cs",
               "RelativeDocumentMoniker": "View\\Controls\\Common\\TaskCard.xaml.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Controls\\Common\\TaskCard.xaml.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Controls\\Common\\TaskCard.xaml.cs",
               "RelativeToolTip": "View\\Controls\\Common\\TaskCard.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -117,11 +149,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "FiltersPanelMainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
               "RelativeDocumentMoniker": "View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\golyb\\source\\repos\\ToDo Manager\\ToDo Manager\\View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\golyb\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\ToDo-Manager\\View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
               "RelativeToolTip": "View\\Controls\\MainWindow\\FiltersPanelMainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
