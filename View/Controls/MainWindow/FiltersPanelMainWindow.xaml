@@ -3,16 +3,183 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ToDo_Manager.View.Controls"
         mc:Ignorable="d"
         Height="Auto" Width="Auto">
-    <Border Background="White"
+
+    <UserControl.Resources>
+
+        <!-- Градиентный фон -->
+        <LinearGradientBrush x:Key="PanelBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFF" Offset="0"/>
+            <GradientStop Color="#F7F7F7" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Тень -->
+        <DropShadowEffect x:Key="PanelShadow"
+                          Color="#000000"
+                          BlurRadius="10"
+                          ShadowDepth="2"
+                          Opacity="0.15"/>
+
+        <!-- Стиль ComboBox -->
+        <Style TargetType="ComboBox" x:Key="ComboStyle">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="BorderBrush" Value="#D0D0D0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border x:Name="Border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6"
+                                    Padding="8">
+                                <DockPanel>
+                                    <ContentPresenter Margin="4,0,30,0"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"/>
+                                    <ToggleButton x:Name="ToggleButton"
+                                                  DockPanel.Dock="Right"
+                                                  Background="Transparent"
+                                                  BorderThickness="0"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ClickMode="Press"
+                                                  Width="24"
+                                                  Height="24"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Center">
+                                        <Path Data="M 0 0 L 10 0 L 5 5 Z"
+                                              Fill="#555"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </ToggleButton>
+                                </DockPanel>
+                            </Border>
+
+                            <Popup x:Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="White"
+                                        BorderBrush="#D0D0D0"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Padding="5"
+                                        SnapsToDevicePixels="True"
+                                        Effect="{StaticResource PanelShadow}">
+                                    <ScrollViewer>
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#4CAF50"/>
+                                <Setter TargetName="Border" Property="Background" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#A5D6A7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль CheckBox -->
+        <Style TargetType="CheckBox" x:Key="CheckStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="Box"
+                                    Width="18"
+                                    Height="18"
+                                    CornerRadius="4"
+                                    BorderBrush="#D0D0D0"
+                                    BorderThickness="1"
+                                    Background="#FAFAFA"
+                                    Margin="0,0,6,0">
+                                <Path x:Name="CheckMark"
+                                      Data="M 2 8 L 7 13 L 15 3"
+                                      Stroke="#4CAF50"
+                                      StrokeThickness="2"
+                                      Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#4CAF50"/>
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#A5D6A7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ClearButtonStyle">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#FF9800"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="8">
+                            <!-- ← вот сюда переносим -->
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FB8C00"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#F57C00"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </UserControl.Resources>
+
+    <Border Background="{StaticResource PanelBackground}"
             CornerRadius="10"
             Padding="15"
-            BorderBrush="#DDD"
+            BorderBrush="#E0E0E0"
             BorderThickness="1"
-            
+            Effect="{StaticResource PanelShadow}"
             Margin="0,0,0,10">
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -22,29 +189,29 @@
             <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
                 <TextBlock Text="Filters:"
                            FontWeight="Bold"
-                           Margin="0,0,10,0"/>
+                           Margin="0,0,10,0"
+                           VerticalAlignment="Center"/>
 
                 <ComboBox Width="150"
                           ItemsSource="{Binding Priorities}"
                           SelectedItem="{Binding SelectedFilterPriority}"
+                          Style="{StaticResource ComboStyle}"
                           Margin="0,0,10,0"/>
 
                 <CheckBox Content="Show completed"
-                          IsChecked="{Binding ShowCompleted}"/>
+                          IsChecked="{Binding ShowCompleted}"
+                          Style="{StaticResource CheckStyle}"
+                          VerticalAlignment="Center"/>
             </StackPanel>
 
             <Button Grid.Column="1"
                     Content="Clear Filters"
                     Command="{Binding ClearFiltersCommand}"
-                    Background="Orange"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Padding="10,5"
+                    Style="{StaticResource ClearButtonStyle}"
                     Margin="20,0,0,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Width="100"/>
+                    Width="120"/>
         </Grid>
     </Border>
 </UserControl>

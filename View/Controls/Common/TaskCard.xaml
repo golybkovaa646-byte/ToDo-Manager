@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:models="clr-namespace:ToDo_Manager.Models"
              Height="Auto" Width="Auto">
-    
 
     <UserControl.Resources>
-        <!-- Лёгкий градиент и тень для карточки -->
+
+        <!-- Фон карточки -->
         <LinearGradientBrush x:Key="CardBackground" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="#FFFFFF" Offset="0"/>
             <GradientStop Color="#FBFBFB" Offset="1"/>
         </LinearGradientBrush>
 
+        <!-- Тень -->
         <DropShadowEffect x:Key="DropShadow"
-                      Color="Black"
-                      BlurRadius="8"
-                      ShadowDepth="2"
-                      Opacity="0.15"/>
-        
-        <!-- Стиль карточки с hover анимацией -->
+                          Color="Black"
+                          BlurRadius="8"
+                          ShadowDepth="2"
+                          Opacity="0.15"/>
+
+        <!-- Hover-анимация карточки -->
         <Style x:Key="CardHoverStyle" TargetType="Border">
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
@@ -53,6 +54,7 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
+
                     <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard>
@@ -71,16 +73,83 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Маленькие цветные индикаторы приоритета -->
-        <Style x:Key="PriorityDot" TargetType="Ellipse">
+        <!-- Зелёный чекбокс -->
+        <Style TargetType="CheckBox" x:Key="GreenCheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Border x:Name="Box"
+                                    Width="22" Height="22"
+                                    CornerRadius="4"
+                                    Background="#FAFAFA"
+                                    BorderBrush="#D0D0D0"
+                                    BorderThickness="1"/>
+
+                            <Path x:Name="CheckMark"
+                                  Data="M 4 11 L 9 16 L 18 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="2"
+                                  StrokeEndLineCap="Round"
+                                  StrokeStartLineCap="Round"
+                                  Visibility="Collapsed"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#4CAF50"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Цвет кружочка приоритета -->
+        <Style x:Key="PriorityDotStyle" TargetType="Ellipse">
             <Setter Property="Width" Value="10"/>
             <Setter Property="Height" Value="10"/>
             <Setter Property="Margin" Value="0,0,8,0"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Priority}" Value="Low">
+                    <Setter Property="Fill" Value="#4CAF50"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Priority}" Value="Medium">
+                    <Setter Property="Fill" Value="#FF9800"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Priority}" Value="High">
+                    <Setter Property="Fill" Value="#E53935"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
+
+        <!-- Цвет текста приоритета -->
+        <Style x:Key="PriorityTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Priority}" Value="Low">
+                    <Setter Property="Foreground" Value="#4CAF50"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Priority}" Value="Medium">
+                    <Setter Property="Foreground" Value="#FF9800"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Priority}" Value="High">
+                    <Setter Property="Foreground" Value="#E53935"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </UserControl.Resources>
 
-    <!-- Карточка с ClipToBounds чтобы hover не вылезал наружу -->
+    <!-- Карточка -->
     <Border Style="{StaticResource CardHoverStyle}"
             Margin="10"
             ClipToBounds="True">
@@ -93,15 +162,14 @@
             </Grid.ColumnDefinitions>
 
             <!-- Чекбокс -->
-            <CheckBox Grid.Column="0"
+            <CheckBox Style="{StaticResource GreenCheckBox}"
+                      Grid.Column="0"
                       VerticalAlignment="Center"
-                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                      Cursor="Hand"
-                      Width="22" Height="22"
                       HorizontalAlignment="Center"
-                      VerticalContentAlignment="Center"/>
+                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                      Cursor="Hand"/>
 
-            <!-- Основной контент -->
+            <!-- Основной текст -->
             <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Title}"
                            FontWeight="SemiBold"
@@ -117,32 +185,28 @@
                            TextTrimming="WordEllipsis"
                            Margin="0,6,0,0"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,8,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}"
-                               Foreground="#9A9A9A"
-                               FontSize="11"/>
-                </StackPanel>
+                <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}"
+                           Foreground="#9A9A9A"
+                           FontSize="11"
+                           Margin="0,8,0,0"/>
             </StackPanel>
 
-            <!-- Правая панель с индикатором приоритета и иконками -->
+            <!-- Правая панель -->
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Margin="0,0,4,0">
 
-                <!-- Индикатор приоритета: цвет зависит от Priority (привязка к строке) -->
-                
-                    <Ellipse Style="{StaticResource PriorityDot}" Fill="DarkOrange"/>
-                
+                <!-- Цветной кружок -->
+                <Ellipse Style="{StaticResource PriorityDotStyle}"/>
 
+                <!-- Текст приоритета -->
                 <TextBlock Text="{Binding Priority}"
-                           Margin="0,0,8,0"
-                           Foreground="#D2691E"
-                           FontWeight="Bold"
+                           Style="{StaticResource PriorityTextStyle}"
                            VerticalAlignment="Center"/>
 
-                <!-- Иконка редактирования -->
+                <!-- Edit -->
                 <Button Width="34" Height="34"
                         Margin="4,0"
                         Background="Transparent"
@@ -156,7 +220,7 @@
                     </Viewbox>
                 </Button>
 
-                <!-- Иконка удаления -->
+                <!-- Delete -->
                 <Button Width="34" Height="34"
                         Margin="4,0"
                         Background="Transparent"
@@ -169,6 +233,7 @@
                         <Path Data="M3,6 L21,6 L19,22 L5,22 z M8,6 L8,4 L16,4 L16,6" Fill="#C62828"/>
                     </Viewbox>
                 </Button>
+
             </StackPanel>
         </Grid>
     </Border>

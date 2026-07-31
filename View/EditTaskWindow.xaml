@@ -2,32 +2,220 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Редактирование задачи"
-        Height="350"
-        Width="400"
-        WindowStartupLocation="CenterScreen">
+        Height="500"
+        Width="420"
+        WindowStartupLocation="CenterScreen"
+        Background="#F7F7F7">
 
-    <StackPanel Margin="20">
-        <TextBlock Text="Title:" FontWeight="Bold"/>
-        <TextBlock Text="Maximum 25 characters." FontWeight="Bold" Foreground="Gray" FontSize="9" />
-        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15" MaxLength="26"/>
-        
+    <Window.Resources>
 
-        <TextBlock Text="Description:" FontWeight="Bold"/>
-        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,15" AcceptsReturn="True" Height="80" TextWrapping="Wrap"/>
+        <!-- Тень -->
+        <DropShadowEffect x:Key="PanelShadow"
+                          Color="#000000"
+                          BlurRadius="12"
+                          ShadowDepth="3"
+                          Opacity="0.15"/>
 
-        <TextBlock Text="Priority:" FontWeight="Bold"/>
-        <ComboBox SelectedItem="{Binding Priority}"
-                  ItemsSource="{Binding Priorities}"
-                  Margin="0,5,0,15"/>
+        <!-- Стиль TextBox -->
+        <Style TargetType="TextBox" x:Key="InputBoxStyle">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#D0D0D0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4CAF50"/>
+                    <Setter Property="Background" Value="#FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Save"
-                    Width="100"
-                    Margin="0,0,10,0"
-                    Command="{Binding SaveCommand}" />
-            <Button Content="Cancel"
-                    Width="100"
-                    Command="{Binding CancelCommand}" />
+        <!-- Стиль ComboBox -->
+        <Style TargetType="ComboBox" x:Key="ComboStyle">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="BorderBrush" Value="#D0D0D0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border x:Name="Border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6"
+                                    Padding="8">
+                                <DockPanel>
+                                    <ContentPresenter Margin="4,0,30,0"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"/>
+                                    <ToggleButton x:Name="ToggleButton"
+                                                  DockPanel.Dock="Right"
+                                                  Background="Transparent"
+                                                  BorderThickness="0"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ClickMode="Press"
+                                                  Width="24"
+                                                  Height="24"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Center">
+                                        <Path Data="M 0 0 L 10 0 L 5 5 Z"
+                                              Fill="#555"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </ToggleButton>
+                                </DockPanel>
+                            </Border>
+
+                            <Popup x:Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="White"
+                                        BorderBrush="#D0D0D0"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Padding="5"
+                                        SnapsToDevicePixels="True"
+                                        Effect="{StaticResource PanelShadow}">
+                                    <ScrollViewer>
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#4CAF50"/>
+                                <Setter TargetName="Border" Property="Background" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#A5D6A7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль кнопки -->
+        <Style TargetType="Button" x:Key="ActionButtonStyle">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#43A047"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#388E3C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль кнопки Cancel -->
+        <Style TargetType="Button" x:Key="CancelButtonStyle" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="#E53935"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D32F2F"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#C62828"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Border Background="White"
+            CornerRadius="12"
+            Padding="25"
+            Margin="15"
+            BorderBrush="#E0E0E0"
+            BorderThickness="1"
+            Effect="{StaticResource PanelShadow}">
+
+        <StackPanel>
+
+            <TextBlock Text="Editing task"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,20"/>
+
+            <TextBlock Text="Title:" FontWeight="Bold"/>
+            <TextBlock Text="Maximum 25 characters."
+                       Foreground="Gray"
+                       FontSize="10"
+                       Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="25"
+                     Style="{StaticResource InputBoxStyle}"
+                     Margin="0,0,0,15"/>
+
+            <TextBlock Text="Description:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+                     Height="90"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Style="{StaticResource InputBoxStyle}"
+                     Margin="0,0,0,15"/>
+
+            <TextBlock Text="Priority:" FontWeight="Bold"/>
+            <ComboBox SelectedItem="{Binding Priority}"
+                      ItemsSource="{Binding Priorities}"
+                      Style="{StaticResource ComboStyle}"
+                      Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Save"
+                        Width="100"
+                        Margin="0,0,10,0"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource ActionButtonStyle}"/>
+                <Button Content="Cancel"
+                        Width="100"
+                        Command="{Binding CancelCommand}"
+                        Style="{StaticResource CancelButtonStyle}"/>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Border>
 </Window>
