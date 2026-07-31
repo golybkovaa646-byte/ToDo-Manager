@@ -25,7 +25,7 @@ namespace ToDo_Manager
                     services.AddTransient<IDialogService, DialogService>();
                     services.AddTransient<ITaskService, TaskService>();
                     services.AddTransient<EditTaskViewModel>();
-
+                    services.AddDbContextFactory<ToDoContext>();
 
                     services.AddTransient<MainViewModel>();
 

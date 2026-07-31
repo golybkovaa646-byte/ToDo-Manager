@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="ToDo_Manager.View.Controls.TaskCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ToDo_Manager.Models"
+             Height="Auto" Width="Auto">
+    
+
+    <UserControl.Resources>
+        <!-- Лёгкий градиент и тень для карточки -->
+        <LinearGradientBrush x:Key="CardBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFF" Offset="0"/>
+            <GradientStop Color="#FBFBFB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <DropShadowEffect x:Key="DropShadow"
+                      Color="Black"
+                      BlurRadius="8"
+                      ShadowDepth="2"
+                      Opacity="0.15"/>
+        
+        <!-- Стиль карточки с hover анимацией -->
+        <Style x:Key="CardHoverStyle" TargetType="Border">
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{StaticResource CardBackground}"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="BorderBrush" Value="#E6E6E6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" BlurRadius="6" ShadowDepth="2" Opacity="0.10"/>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1.015" Duration="0:0:0.12"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1.015" Duration="0:0:0.12"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.(DropShadowEffect.BlurRadius)"
+                                                 To="18" Duration="0:0:0.12"/>
+                                <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
+                                                To="#DADADA" Duration="0:0:0.12"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.12"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.12"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.(DropShadowEffect.BlurRadius)"
+                                                 To="6" Duration="0:0:0.12"/>
+                                <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
+                                                To="#E6E6E6" Duration="0:0:0.12"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Маленькие цветные индикаторы приоритета -->
+        <Style x:Key="PriorityDot" TargetType="Ellipse">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <!-- Карточка с ClipToBounds чтобы hover не вылезал наружу -->
+    <Border Style="{StaticResource CardHoverStyle}"
+            Margin="10"
+            ClipToBounds="True">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Чекбокс -->
+            <CheckBox Grid.Column="0"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                      Cursor="Hand"
+                      Width="22" Height="22"
+                      HorizontalAlignment="Center"
+                      VerticalContentAlignment="Center"/>
+
+            <!-- Основной контент -->
+            <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Title}"
+                           FontWeight="SemiBold"
+                           FontSize="16"
+                           Foreground="#222"
+                           TextWrapping="Wrap"/>
+
+                <TextBlock Text="{Binding Description}"
+                           FontSize="13"
+                           Foreground="#666"
+                           MaxWidth="450"
+                           TextWrapping="Wrap"
+                           TextTrimming="WordEllipsis"
+                           Margin="0,6,0,0"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}"
+                               Foreground="#9A9A9A"
+                               FontSize="11"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Правая панель с индикатором приоритета и иконками -->
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,4,0">
+
+                <!-- Индикатор приоритета: цвет зависит от Priority (привязка к строке) -->
+                
+                    <Ellipse Style="{StaticResource PriorityDot}" Fill="DarkOrange"/>
+                
+
+                <TextBlock Text="{Binding Priority}"
+                           Margin="0,0,8,0"
+                           Foreground="#D2691E"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+                <!-- Иконка редактирования -->
+                <Button Width="34" Height="34"
+                        Margin="4,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        ToolTip="Edit"
+                        Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding}">
+                    <Viewbox Width="14" Height="14">
+                        <Path Data="M3,17 L17,3 L21,7 L7,21 L3,21 z" Fill="#555"/>
+                    </Viewbox>
+                </Button>
+
+                <!-- Иконка удаления -->
+                <Button Width="34" Height="34"
+                        Margin="4,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        ToolTip="Delete"
+                        Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding}">
+                    <Viewbox Width="14" Height="14">
+                        <Path Data="M3,6 L21,6 L19,22 L5,22 z M8,6 L8,4 L16,4 L16,6" Fill="#C62828"/>
+                    </Viewbox>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

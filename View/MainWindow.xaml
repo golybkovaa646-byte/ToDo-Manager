@@ -3,142 +3,71 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:ToDo_Manager.ViewModels"
         xmlns:models="clr-namespace:ToDo_Manager.Models"
+        xmlns:controls="clr-namespace:ToDo_Manager.View.Controls"
         Title="ToDo Manager"
-        Height="600"
-        Width="950"
+        Height="750"
+        Width="1350"
         WindowStartupLocation="CenterScreen"
-        MinHeight="400" MinWidth="850">
+        Background="#F3F3F3"
+        MinHeight="400" MinWidth="1050">
+
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadow"
+                          Color="Black"
+                          BlurRadius="10"
+                          ShadowDepth="2"
+                          Opacity="0.2"/>
+    </Window.Resources>
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260"/>
-            <!-- Левая панель -->
+            <ColumnDefinition Width="280"/>
             <ColumnDefinition Width="*"/>
-            <!-- Правая  -->
         </Grid.ColumnDefinitions>
 
-        <!-- Левая панель ввода -->
-        <StackPanel Grid.Column="0" Margin="4">
-            <TextBlock Text="Create Task" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+        <!-- ЛЕВАЯ ПАНЕЛЬ -->
+        <controls:CreateTaskPanelMainWindow Grid.Column="0"/>
 
-            <TextBlock Text="Title" FontWeight="Bold"/>
-            <TextBox Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="25"
-                     Margin="0,0,0,10"/>
+        <!-- ПРАВАЯ ПАНЕЛЬ -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <TextBlock Text="Description" FontWeight="Bold"/>
-            <TextBox Text="{Binding NewTaskDescription, UpdateSourceTrigger=PropertyChanged}"
-                     Height="80"
-                     TextWrapping="Wrap"
-                     AcceptsReturn="True"
-                     Margin="0,0,0,10"/>
+            <!-- ФИЛЬТРЫ -->
+            <controls:FiltersPanelMainWindow Grid.Row="0"/>
 
-            <TextBlock Text="Priority" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Priorities}"
-                      SelectedItem="{Binding NewTaskPriority}"
-                      Margin="0,0,0,10"/>
-
-            <Button Content="Add Task"
-                    Command="{Binding AddTaskCommand}"
-                    Height="40"
-                    Background="#4CAF50"
-                    Foreground="White"
-                    FontWeight="Bold"/>
-        </StackPanel>
-
-        <!-- Правая часть -->
-        <DockPanel Grid.Column="1" Margin="20,0,0,0">
-
-            <!-- Кривая хуйня потом починить (кнопку вправа) -->
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Filters:" FontWeight="Bold" Margin="0,0,10,0"/>
-
-                <ComboBox Width="150"
-                          ItemsSource="{Binding Priorities}"
-                          SelectedItem="{Binding SelectedFilterPriority}"
-                          Margin="0,0,10,0"/>
-
-                <CheckBox Content="Show completed"
-                          IsChecked="{Binding ShowCompleted}"/>
-
-                <Button Content="Clear Filters"
-                        Margin="20,0,0,0"
-                        Command="{Binding ClearFiltersCommand}"
-                        Background="Orange"
-                        Foreground="White"
-                        FontWeight="Bold"/>
-
-            </StackPanel>
-
-            <!-- Список  -->
-            <ListBox ItemsSource="{Binding FilteredTasks}"
+            <!-- СПИСОК ЗАДАЧ -->
+            <ListBox Grid.Row="1"
+                     ItemsSource="{Binding FilteredTasks}"
+                     Margin="0,15,0,0"
                      HorizontalContentAlignment="Stretch"
+                     
+                       
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
 
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:TaskItem}">
-                        <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,5">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="35"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                
-                                <CheckBox Grid.Column="0"
-                                          VerticalAlignment="Center"
-                                          IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
-
-                                <!-- Текст -->
-                                <StackPanel Grid.Column="1" Margin="8,0">
-                                    <TextBlock Text="{Binding Title}"
-                                               FontWeight="Bold"
-                                               FontSize="14"
-                                               TextWrapping="Wrap"/>
-
-                                    <TextBlock Text="{Binding Description}"
-                                               FontSize="12"
-                                               Foreground="Gray"
-                                               TextWrapping="Wrap"
-                                               TextTrimming="WordEllipsis"/>
-
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}"
-                                               Foreground="Gray"
-                                               FontSize="11"/>
-                                </StackPanel>
-
-                                <!-- Правая панель -->
-                                <StackPanel Grid.Column="2"
-                                            Orientation="Horizontal"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Right">
-
-                                    <TextBlock Text="{Binding Priority}"
-                                               Margin="8,0"
-                                               Foreground="DarkOrange"/>
-
-                                    <Button Content="✎"
-                                            Margin="4"
-                                            Width="24" Height="24"
-                                            Command="{Binding DataContext.OpenEditWindowCommand,
-                                            RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                            CommandParameter="{Binding}" />
-
-                                    <Button Content="✖"
-                                            Margin="4"
-                                            Width="24" Height="24"
-                                            Command="{Binding DataContext.DeleteTaskCommand,
-                                            RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                            CommandParameter="{Binding}" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
+                        <controls:TaskCard />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-
             </ListBox>
-
-        </DockPanel>
+        </Grid>
     </Grid>
 </Window>

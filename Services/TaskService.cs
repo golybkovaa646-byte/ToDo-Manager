@@ -10,33 +10,38 @@ namespace ToDo_Manager.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly ToDoContext _db;
+        private readonly IDbContextFactory<ToDoContext> _factory;
 
-        public TaskService(ToDoContext db)
+        public TaskService(IDbContextFactory<ToDoContext> factory)
         {
-            _db = db;
+            _factory = factory;
         }
 
         public async Task<List<TaskItem>> GetAllAsync()
         {
-            return await _db.Tasks.AsTracking().ToListAsync();
+            using var db = _factory.CreateDbContext();
+            return await db.Tasks.AsNoTracking().ToListAsync();
         }
 
         public async Task AddAsync(TaskItem item)
         {
-            _db.Tasks.Add(item);
-            await _db.SaveChangesAsync();
+            using var db = _factory.CreateDbContext();
+            db.Tasks.Add(item);
+            await db.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(TaskItem item)
         {
-            _db.Tasks.Remove(item);
-            await _db.SaveChangesAsync();
+            using var db = _factory.CreateDbContext();
+            db.Tasks.Remove(item);
+            await db.SaveChangesAsync();
         }
+
         public async Task UpdateAsync(TaskItem item)
         {
-            _db.Tasks.Update(item);
-            await _db.SaveChangesAsync();
+            using var db = _factory.CreateDbContext();
+            db.Tasks.Update(item);
+            await db.SaveChangesAsync();
         }
 
     }
