@@ -7,22 +7,20 @@
     <UserControl.Resources>
 
         <!-- Фон карточки -->
-        <LinearGradientBrush x:Key="CardBackground" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#FFFFFF" Offset="0"/>
-            <GradientStop Color="#FBFBFB" Offset="1"/>
+        <LinearGradientBrush x:Key="CardBackground" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFFEFC" Offset="0"/>
+            <GradientStop Color="#FDFBF9" Offset="0.35"/>
+            <GradientStop Color="#F9F6F3" Offset="0.75"/>
+            <GradientStop Color="#F5F0EB" Offset="1"/>
         </LinearGradientBrush>
 
-        
-        
-        
-        
-        
+
         <!-- Тень -->
         <DropShadowEffect x:Key="DropShadow"
-                          Color="Black"
-                          BlurRadius="8"
-                          ShadowDepth="2"
-                          Opacity="0.15"/>
+                  Color="#000000"
+                  BlurRadius="12"
+                  ShadowDepth="2"
+                  Opacity="0.18"/>
 
         <!-- Hover-анимация карточки -->
         <Style x:Key="CardHoverStyle" TargetType="Border">
@@ -33,13 +31,13 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="Background" Value="{StaticResource CardBackground}"/>
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="BorderBrush" Value="#E6E6E6"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="18"/>
+            <Setter Property="BorderBrush" Value="#E2E0DD"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#000000" BlurRadius="6" ShadowDepth="2" Opacity="0.10"/>
+                    <DropShadowEffect Color="#000000" BlurRadius="10" ShadowDepth="2" Opacity="0.12"/>
                 </Setter.Value>
             </Setter>
 
@@ -49,13 +47,13 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                                 To="1.015" Duration="0:0:0.12"/>
+                                         To="1.02" Duration="0:0:0.12"/>
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                                 To="1.015" Duration="0:0:0.12"/>
+                                         To="1.02" Duration="0:0:0.12"/>
                                 <DoubleAnimation Storyboard.TargetProperty="Effect.(DropShadowEffect.BlurRadius)"
-                                                 To="18" Duration="0:0:0.12"/>
+                                         To="20" Duration="0:0:0.12"/>
                                 <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                To="#DADADA" Duration="0:0:0.12"/>
+                                        To="#D6D3CF" Duration="0:0:0.12"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -64,20 +62,19 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                                 To="1" Duration="0:0:0.12"/>
+                                         To="1" Duration="0:0:0.12"/>
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                                 To="1" Duration="0:0:0.12"/>
+                                         To="1" Duration="0:0:0.12"/>
                                 <DoubleAnimation Storyboard.TargetProperty="Effect.(DropShadowEffect.BlurRadius)"
-                                                 To="6" Duration="0:0:0.12"/>
+                                         To="10" Duration="0:0:0.12"/>
                                 <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                To="#E6E6E6" Duration="0:0:0.12"/>
+                                        To="#E2E0DD" Duration="0:0:0.12"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
                 </Trigger>
             </Style.Triggers>
         </Style>
-
         <!-- Зелёный чекбокс -->
         <Style TargetType="CheckBox" x:Key="GreenCheckBox">
             <Setter Property="Template">
@@ -196,12 +193,12 @@
                 <TextBlock Text="{Binding Title}"
                            FontWeight="SemiBold"
                            FontSize="16"
-                           Foreground="#222"
+                           Foreground="Black"
                            TextWrapping="Wrap"/>
 
                 <TextBlock Text="{Binding Description}"
                            FontSize="13"
-                           Foreground="#666"
+                           Foreground="#444444"
                            MaxWidth="450"
                            TextWrapping="Wrap"
                            TextTrimming="WordEllipsis"

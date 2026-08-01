@@ -60,15 +60,17 @@ namespace ToDo_Manager.ViewModels
 
         partial void OnNewTaskTitleChanged(string oldValue, string newValue)
         {
-            if (newValue.Length > 25)
+            if (newValue.Length > 45)
             {
-                NewTaskTitle = newValue[..25];
-                _messageService.ShowInfo("Maximum 25 characters. Your text will be shortened.");
+                NewTaskTitle = newValue[..45];
+                _messageService.ShowInfo("Maximum 45 characters. Your text will be shortened.");
             }
         }
 
         private void RefreshFilteredTasks()
         {
+           
+
             FilteredTasks.Clear();
 
             foreach (var t in Tasks)
@@ -181,6 +183,10 @@ namespace ToDo_Manager.ViewModels
         [RelayCommand]
         private void ClearFilters()
         {
+            if (SelectedFilterPriority == null && ShowCompleted == false)
+                return;
+
+
             SelectedFilterPriority = null;
             ShowCompleted = false;
             RefreshFilteredTasks();

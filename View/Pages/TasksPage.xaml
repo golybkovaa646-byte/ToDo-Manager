@@ -106,22 +106,34 @@
 
                 <!-- Плейсхолдер -->
                 <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Panel.ZIndex="1">
+            VerticalAlignment="Center"
+            Panel.ZIndex="1">
+
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding TotalTasksCount}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
                     <TextBlock Text="Add your first Task!"
-                               FontSize="26"
-                               FontWeight="SemiBold"
-                               Foreground="#999"
-                               HorizontalAlignment="Center"/>
+               FontSize="26"
+               FontWeight="SemiBold"
+               Foreground="#999"
+               HorizontalAlignment="Center"/>
 
                     <TextBlock Text="Start organizing your tasks and stay productive"
-                               FontSize="14"
-                               Foreground="#AAA"
-                               Margin="0,5,0,0"
-                               HorizontalAlignment="Center"/>
+               FontSize="14"
+               Foreground="#AAA"
+               Margin="0,5,0,0"
+               HorizontalAlignment="Center"/>
 
-                   
                 </StackPanel>
+
 
                 <!-- Список -->
                 <ListBox ItemsSource="{Binding FilteredTasks}"

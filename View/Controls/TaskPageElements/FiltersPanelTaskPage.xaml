@@ -8,20 +8,21 @@
 
     <UserControl.Resources>
 
-        <!-- Градиентный фон -->
+        <!-- Более мягкий фон панели -->
         <LinearGradientBrush x:Key="PanelBackground" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#FFFFFF" Offset="0"/>
-            <GradientStop Color="#F7F7F7" Offset="1"/>
+            <GradientStop Color="#F9F6F3" Offset="0"/>
+            <GradientStop Color="#F9F6F3" Offset="0.7"/>
+            <GradientStop Color="#FFFFFF" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Тень -->
+        <!-- Более мягкая тень -->
         <DropShadowEffect x:Key="PanelShadow"
                           Color="#000000"
-                          BlurRadius="10"
+                          BlurRadius="14"
                           ShadowDepth="2"
-                          Opacity="0.15"/>
+                          Opacity="0.18"/>
 
-        <!-- Стиль ComboBox -->
+        <!-- Стиль ComboBox (твой, только цвета чуть мягче) -->
         <Style TargetType="ComboBox" x:Key="ComboStyle">
             <Setter Property="Padding" Value="8"/>
             <Setter Property="FontSize" Value="14"/>
@@ -98,7 +99,7 @@
             </Setter>
         </Style>
 
-        <!-- Стиль CheckBox -->
+        <!-- Стиль CheckBox (твой) -->
         <Style TargetType="CheckBox" x:Key="CheckStyle">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Foreground" Value="#333"/>
@@ -138,6 +139,7 @@
             </Setter>
         </Style>
 
+        <!-- Кнопка Clear Filters (правильный Template, без CornerRadius у Button) -->
         <Style TargetType="Button" x:Key="ClearButtonStyle">
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
@@ -150,10 +152,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                        CornerRadius="8">
-                            <!-- ← вот сюда переносим -->
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
                             <ContentPresenter HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                              VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -169,12 +172,11 @@
             </Style.Triggers>
         </Style>
 
-
     </UserControl.Resources>
 
     <Border Background="{StaticResource PanelBackground}"
-            CornerRadius="10"
-            Padding="15"
+            CornerRadius="12"
+            Padding="18"
             BorderBrush="#E0E0E0"
             BorderThickness="1"
             Effect="{StaticResource PanelShadow}"
@@ -186,40 +188,46 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+            <!-- Левая часть: фильтры + счётчики -->
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0"
+                        VerticalAlignment="Center">
+
                 <TextBlock Text="Filters:"
                            FontSize="16"
                            FontWeight="Bold"
-                           Margin="0,0,10,0"
+                           Margin="0,0,12,0"
                            VerticalAlignment="Center"/>
 
                 <ComboBox Width="150"
                           ItemsSource="{Binding Priorities}"
                           SelectedItem="{Binding SelectedFilterPriority}"
                           Style="{StaticResource ComboStyle}"
-                          Margin="0,0,10,0"/>
+                          Margin="0,0,12,0"/>
 
                 <CheckBox Content="Show completed"
                           FontSize="16"
                           IsChecked="{Binding ShowCompleted}"
                           Style="{StaticResource CheckStyle}"
-                          VerticalAlignment="Center"/>
+                          VerticalAlignment="Center"
+                          Margin="0,0,16,0"/>
+
                 <TextBlock Text="{Binding TotalTasksCount, StringFormat='Total Tasks: {0}'}"
-                            FontWeight="Bold"
-                            Foreground="#333"
-                            Margin="10,0,25,0"
-                            VerticalAlignment="Center"
-                           FontSize="16"/>
+                           FontWeight="Bold"
+                           Foreground="#333"
+                           Margin="0,0,16,0"
+                           VerticalAlignment="Center"
+                           FontSize="15"/>
 
                 <TextBlock Text="{Binding FilteredTasksCount, StringFormat='Shown Tasks: {0}'}"
-                    FontWeight="Bold"
-                    Foreground="#333"
-                    Margin="0,0,25,0"
-                    VerticalAlignment="Center"
-                           FontSize="16"/>
-
+                           FontWeight="Bold"
+                           Foreground="#333"
+                           Margin="0,0,0,0"
+                           VerticalAlignment="Center"
+                           FontSize="15"/>
             </StackPanel>
 
+            <!-- Правая часть: кнопка -->
             <Button Grid.Column="1"
                     Content="Clear Filters"
                     Command="{Binding ClearFiltersCommand}"

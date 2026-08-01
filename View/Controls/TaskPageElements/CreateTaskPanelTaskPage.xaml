@@ -10,8 +10,8 @@
 
         <!-- Градиентный фон карточки -->
         <LinearGradientBrush x:Key="PanelBackground" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#FFFFFF" Offset="0"/>
-            <GradientStop Color="#F7F7F7" Offset="1"/>
+            <GradientStop Color="#FFFFFF" Offset="1"/>
+            <GradientStop Color="#F9F6F3" Offset="0.3"/>
         </LinearGradientBrush>
 
         <!-- Тень -->
@@ -190,7 +190,7 @@
 
             <!-- Title -->
             <TextBlock Text="Title" FontWeight="Bold" FontSize="16"/>
-            <TextBlock Text="Maximum 25 characters"
+            <TextBlock Text="Maximum 45 characters"
                    Foreground="#888"
                    FontSize="13"
                    Margin="0,0,0,5"/>
