@@ -4,10 +4,10 @@
     <_LastSelectedProfileId>C:\Users\golyb\OneDrive\Документы\GitHub\ToDo-Manager\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="View\Controls\MainWindow\CreateTaskPanelMainWindow.xaml.cs">
+    <Compile Update="View\Controls\TaskPageElements\CreateTaskPanelTaskPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Controls\MainWindow\FiltersPanelMainWindow.xaml.cs">
+    <Compile Update="View\Controls\TaskPageElements\FiltersPanelTaskPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Controls\Common\TaskCard.xaml.cs">

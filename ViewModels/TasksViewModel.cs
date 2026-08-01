@@ -12,6 +12,8 @@ namespace ToDo_Manager.ViewModels
         private readonly IMessageService _messageService;
         private readonly IDialogService _dialogService;
 
+        
+
         public ObservableCollection<Priority> Priorities { get; } =
             new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
 
@@ -32,6 +34,10 @@ namespace ToDo_Manager.ViewModels
 
         public ObservableCollection<TaskItem> Tasks { get; } = new();
         public ObservableCollection<TaskItem> FilteredTasks { get; } = new();
+
+
+        public int TotalTasksCount => Tasks?.Count ?? 0;
+        public int FilteredTasksCount => FilteredTasks?.Count ?? 0;
 
         public TasksViewModel(ITaskService taskService, IMessageService messageService, IDialogService dialogService)
         {
@@ -73,6 +79,8 @@ namespace ToDo_Manager.ViewModels
                     FilteredTasks.Add(t);
                 }
             }
+            OnPropertyChanged(nameof(TotalTasksCount));
+            OnPropertyChanged(nameof(FilteredTasksCount));
         }
 
         private async void LoadTasks()
@@ -83,8 +91,8 @@ namespace ToDo_Manager.ViewModels
 
                 Tasks.Clear();
                 foreach (var item in items)
-                    Tasks.Add(item);
-
+                    Tasks.Insert(0, item);
+                OnPropertyChanged(nameof(TotalTasksCount));
                 RefreshFilteredTasks();
             }
             catch (Exception ex)
@@ -117,8 +125,8 @@ namespace ToDo_Manager.ViewModels
                 };
 
                 await _taskService.AddAsync(task);
-                Tasks.Add(task);
-
+                Tasks.Insert(0, task);
+                OnPropertyChanged(nameof(TotalTasksCount));
                 RefreshFilteredTasks();
 
                 NewTaskDescription = string.Empty;
@@ -141,7 +149,7 @@ namespace ToDo_Manager.ViewModels
 
                 await _taskService.DeleteAsync(task);
                 Tasks.Remove(task);
-
+                OnPropertyChanged(nameof(TotalTasksCount));
                 RefreshFilteredTasks();
             }
             catch (Exception ex)

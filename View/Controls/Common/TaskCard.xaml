@@ -12,6 +12,11 @@
             <GradientStop Color="#FBFBFB" Offset="1"/>
         </LinearGradientBrush>
 
+        
+        
+        
+        
+        
         <!-- Тень -->
         <DropShadowEffect x:Key="DropShadow"
                           Color="Black"
@@ -149,10 +154,27 @@
 
     </UserControl.Resources>
 
+    
+    
+    
+    
     <!-- Карточка -->
-    <Border Style="{StaticResource CardHoverStyle}"
+    <Border x:Name="Root" 
             Margin="10"
             ClipToBounds="True">
+
+        <Border.Style>
+            <Style TargetType="Border" BasedOn="{StaticResource CardHoverStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                        <Setter Property="Background" Value="#E6F7E6"/>
+                        <Setter Property="BorderBrush" Value="#4CAF50"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+
 
         <Grid>
             <Grid.ColumnDefinitions>

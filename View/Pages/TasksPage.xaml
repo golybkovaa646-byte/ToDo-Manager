@@ -7,26 +7,76 @@
       xmlns:vm="clr-namespace:ToDo_Manager.ViewModels"
       xmlns:models="clr-namespace:ToDo_Manager.Models"
       xmlns:controls="clr-namespace:ToDo_Manager.View.Controls"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TasksPage">
+      mc:Ignorable="d">
 
     <Page.Resources>
-        <DropShadowEffect x:Key="DropShadow"
-                       Color="Black"
-                       BlurRadius="10"
-                       ShadowDepth="2"
-                       Opacity="0.2"/>
+
+        <!-- Мягкий бело-бежевый фон -->
+        <LinearGradientBrush x:Key="MainBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFF" Offset="0"/>
+            <GradientStop Color="#F9F6F3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Анимация появления фильтров -->
+        <Storyboard x:Key="TopPanelAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                     From="0" To="1" Duration="0:0:2"  />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                     From="-40" To="0" Duration="0:0:2"   />
+        </Storyboard>
+
+
+        <!-- Анимация появления панели левой с добавлением-->
+        <Storyboard x:Key="PanelAppearAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:2"  />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="20" To="0" Duration="0:0:2"  />
+        </Storyboard>
+
+        <!-- Анимация появления карточек -->
+        <Style TargetType="controls:TaskCard">
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform Y="10"/>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0" To="1" Duration="0:0:1"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                             From="10" To="0" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Page.Resources>
 
-    <Grid Margin="10">
+    <Grid Background="{StaticResource MainBackground}" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- ЛЕВАЯ ПАНЕЛЬ -->
-        <controls:CreateTaskPanelMainWindow Grid.Column="0"/>
+        <controls:CreateTaskPanelTaskPage Grid.Column="0"
+                                          RenderTransformOrigin="0.5,0.5">
+            <controls:CreateTaskPanelTaskPage.RenderTransform>
+                <TranslateTransform Y="20"/>
+            </controls:CreateTaskPanelTaskPage.RenderTransform>
+            <controls:CreateTaskPanelTaskPage.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource PanelAppearAnimation}"/>
+                </EventTrigger>
+            </controls:CreateTaskPanelTaskPage.Triggers>
+        </controls:CreateTaskPanelTaskPage>
 
         <!-- ПРАВАЯ ПАНЕЛЬ -->
         <Grid Grid.Column="1">
@@ -36,38 +86,93 @@
             </Grid.RowDefinitions>
 
             <!-- ФИЛЬТРЫ -->
-            <controls:FiltersPanelMainWindow Grid.Row="0"/>
+            <controls:FiltersPanelTaskPage Grid.Row="0"
+                               
+                               RenderTransformOrigin="0.5,0.5">
+                <controls:FiltersPanelTaskPage.RenderTransform>
+                    <TranslateTransform Y="-40"/>
+                </controls:FiltersPanelTaskPage.RenderTransform>
+
+                <controls:FiltersPanelTaskPage.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard Storyboard="{StaticResource TopPanelAnimation}"/>
+                    </EventTrigger>
+                </controls:FiltersPanelTaskPage.Triggers>
+            </controls:FiltersPanelTaskPage>
+
 
             <!-- СПИСОК ЗАДАЧ -->
-            <ListBox Grid.Row="1"
-                  ItemsSource="{Binding FilteredTasks}"
-                  Margin="0,15,0,0"
-                  HorizontalContentAlignment="Stretch"
-                  
-                    
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListBoxItem">
-                                    <ContentPresenter />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
+            <Grid Grid.Row="1" Margin="0,15,0,0">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:TaskItem}">
-                        <controls:TaskCard />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                <!-- Плейсхолдер -->
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Panel.ZIndex="1">
+                    <TextBlock Text="Add your first Task!"
+                               FontSize="26"
+                               FontWeight="SemiBold"
+                               Foreground="#999"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Start organizing your tasks and stay productive"
+                               FontSize="14"
+                               Foreground="#AAA"
+                               Margin="0,5,0,0"
+                               HorizontalAlignment="Center"/>
+
+                   
+                </StackPanel>
+
+                <!-- Список -->
+                <ListBox ItemsSource="{Binding FilteredTasks}"
+                         HorizontalContentAlignment="Stretch"
+                         Margin="0">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="ListBox">
+                            <Border CornerRadius="14"
+                                    Background="White"
+                                    Padding="12"
+                                    SnapsToDevicePixels="True">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="26"
+                                                      ShadowDepth="2"
+                                                      Opacity="0.25"
+                                                      Color="#333333"/>
+                                </Border.Effect>
+
+                                <ScrollViewer Focusable="False">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </ListBox.Template>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:TaskItem}">
+                            <controls:TaskCard />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

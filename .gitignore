@@ -2,21 +2,52 @@
 .vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
 # Build output
 bin/
 obj/
 Release/
 Debug/
+publish/
 
-# Publish output
-/publish/
-
-# Logs and temp
+# WPF build artifacts
+*.pdb
+*.cache
+*.db
+*.sqlite
 *.log
 *.tmp
 
-# Database and cache
-*.db
-*.sqlite
-*.pdb
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Configuration and secrets
+appsettings.json
+appsettings.*.json
+*.config
+*.env
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Rider / ReSharper / VS Code
+.idea/
+.vscode/
+*.DotSettings.user
+
+# Generated files
+GeneratedFiles/
+GeneratedCode/
+
+# Publish profiles
+Properties/PublishProfiles/
+
+# Local test data
+TestResults/
+*.TestResults.xml

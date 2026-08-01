@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\golyb\OneDrive\Документы\GitHub\ToDo-Manager\App.xaml
-625005738
+6-1614890681
 
-34601720446
+34317782289
 245-134018424
-View\Controls\Common\TaskCard.xaml;View\Controls\MainWindow\CreateTaskPanelMainWindow.xaml;View\Controls\MainWindow\FiltersPanelMainWindow.xaml;View\EditTaskWindow.xaml;View\MainWindow.xaml;View\Pages\TasksPage.xaml;
+View\Controls\Common\TaskCard.xaml;View\Controls\TaskPageElements\CreateTaskPanelTaskPage.xaml;View\Controls\TaskPageElements\FiltersPanelTaskPage.xaml;View\EditTaskWindow.xaml;View\MainWindow.xaml;View\Pages\TasksPage.xaml;
 
-False
+True
 

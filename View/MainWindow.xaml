@@ -60,9 +60,7 @@
 
                 
 
-                <Button Content="Settings (No Working)"
-                        Command="{Binding NavigateSettingsCommand}"
-                        Style="{StaticResource SidebarButtonStyle}"/>
+                
 
             </StackPanel>
         </Border>

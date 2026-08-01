@@ -22,16 +22,6 @@ namespace ToDo_Manager.ViewModels
             CurrentPage = new TasksPage();
         }
 
-       /* [RelayCommand]
-        private void NavigateWeather()
-        {
-            CurrentPage = new WeatherPage();
-        }
-
-        [RelayCommand]
-        private void NavigateSettings()
-        {
-            CurrentPage = new SettingsPage();
-        }*/
+       
     }
 }
