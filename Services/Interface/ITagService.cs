@@ -5,8 +5,10 @@ using ToDo_Manager.Models;
 
 namespace ToDo_Manager.Services.Interface
 {
-    public interface IDialogService
+    public interface ITagService
     {
-        void EditTask(EditTaskViewModel vm);
+        Task<List<Tag>> GetAllAsync();
+        Task AddAsync(Tag tag);
+        Task DeleteAsync(Tag tag);
     }
 }

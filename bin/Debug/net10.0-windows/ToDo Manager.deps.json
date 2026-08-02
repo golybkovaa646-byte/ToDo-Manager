@@ -9,9 +9,10 @@
       "ToDo Manager/1.0.0": {
         "dependencies": {
           "CommunityToolkit.Mvvm": "8.4.2",
+          "Extended.Wpf.Toolkit": "5.1.2",
           "Microsoft.EntityFrameworkCore": "10.0.10",
+          "Microsoft.EntityFrameworkCore.Design": "10.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "10.0.10",
-          "Microsoft.EntityFrameworkCore.Tools": "10.0.10",
           "Microsoft.Extensions.DependencyInjection": "10.0.10",
           "Microsoft.Extensions.Hosting": "10.0.10",
           "SQLitePCLRaw.lib.e_sqlite3": "2.1.12"
@@ -25,6 +26,68 @@
           "lib/net8.0/CommunityToolkit.Mvvm.dll": {
             "assemblyVersion": "8.4.0.0",
             "fileVersion": "8.4.2.1"
+          }
+        }
+      },
+      "Extended.Wpf.Toolkit/5.1.2": {
+        "runtime": {
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.Toolkit.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0/cs-CZ/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/net5.0/de/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0/es/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0/fr/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0/hu/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net5.0/it/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0/ja-JP/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "lib/net5.0/pt-BR/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0/ro/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net5.0/ru/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0/sv/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "zh-Hans"
           }
         }
       },
@@ -415,11 +478,6 @@
             "assemblyVersion": "10.0.10.0",
             "fileVersion": "10.0.1026.32716"
           }
-        }
-      },
-      "Microsoft.EntityFrameworkCore.Tools/10.0.10": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "10.0.10"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/10.0.10": {
@@ -1059,6 +1117,13 @@
       "path": "communitytoolkit.mvvm/8.4.2",
       "hashPath": "communitytoolkit.mvvm.8.4.2.nupkg.sha512"
     },
+    "Extended.Wpf.Toolkit/5.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xjnylqPScjYRJq5pULiSqNf7RiqOG9fgcpji83qbB2i0JSthK4i52JRYpKvDSVW4BDDVeHMjB4JQlIUcpIqGcA==",
+      "path": "extended.wpf.toolkit/5.1.2",
+      "hashPath": "extended.wpf.toolkit.5.1.2.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -1156,13 +1221,6 @@
       "sha512": "sha512-YbVWMIouzwTKBiLms8boa7xeRT88wI14R1msv3XExFk9n0/sa8nU7MwDa1CKtfLGMJs7O7QWuS9/xhcQ72AD2A==",
       "path": "microsoft.entityframeworkcore.sqlite.core/10.0.10",
       "hashPath": "microsoft.entityframeworkcore.sqlite.core.10.0.10.nupkg.sha512"
-    },
-    "Microsoft.EntityFrameworkCore.Tools/10.0.10": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-oFNTteHcfnftdV9a+4Psed+HV95YKnNrPF8F2+nHtvdOVDfdcbNqKE7xYutOquo1cuBAs84Lq5Boh49ANnF4zQ==",
-      "path": "microsoft.entityframeworkcore.tools/10.0.10",
-      "hashPath": "microsoft.entityframeworkcore.tools.10.0.10.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/10.0.10": {
       "type": "package",

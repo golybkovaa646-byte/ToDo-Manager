@@ -8,12 +8,23 @@ namespace ToDo_Manager.View
     {
 
 
-        public EditTaskWindow(EditTaskViewModel vm)
+        public EditTaskWindow()
         {
             InitializeComponent();
-            DataContext = vm;
+            Loaded += EditTaskWindow_Loaded;
+        }
 
-            vm.RequestClose += Close;
+
+        private void EditTaskWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is EditTaskViewModel vm)
+            {
+                vm.RequestClose += () =>
+                {
+                    DialogResult = true;
+                    Close();
+                };
+            }
         }
     }
 }

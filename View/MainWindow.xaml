@@ -7,9 +7,19 @@
         Width="1450" Height="750"
         WindowStartupLocation="CenterScreen">
 
-    
-
     <Window.Resources>
+
+        <!-- Анимация появления кнопки -->
+        <Storyboard x:Key="SidebarButtonAppearAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.45"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="-40" To="0"
+                             Duration="0:0:0.45"/>
+        </Storyboard>
+
         <!-- Стиль кнопок боковой панели -->
         <Style x:Key="SidebarButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
@@ -18,23 +28,33 @@
             <Setter Property="Margin" Value="0,10,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="-40"/>
+                </Setter.Value>
+            </Setter>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                            CornerRadius="6"
-                            Padding="12">
+                                CornerRadius="6"
+                                Padding="12">
                             <ContentPresenter HorizontalAlignment="Left"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#4CAF50"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
+
     </Window.Resources>
 
 
@@ -54,21 +74,57 @@
                            FontWeight="Bold"
                            Margin="0,0,0,30"/>
 
+                <!-- Кнопка 1 — задержка 0.0 -->
                 <Button Content="My tasks"
                         Command="{Binding NavigateTasksCommand}"
-                        Style="{StaticResource SidebarButtonStyle}"/>
+                        Style="{StaticResource SidebarButtonStyle}">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                     From="0" To="1"
+                                                     Duration="0:0:1"
+                                                     BeginTime="0:0:0.20"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="-40" To="0"
+                                                     Duration="0:0:0.45"
+                                                     BeginTime="0:0:0.00"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
 
-                
-
-                
+                <!-- Кнопка 2 -->
+                <Button Content="My tags"
+                        Command="{Binding NavigateTagsCommand}"
+                        Style="{StaticResource SidebarButtonStyle}">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                     From="0" To="1"
+                                                     Duration="0:0:2"
+                                                     BeginTime="0:0:0.65"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="-40" To="0"
+                                                     Duration="0:0:0.45"
+                                                     BeginTime="0:0:0.15"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
 
             </StackPanel>
         </Border>
 
         <!-- Content -->
         <Frame Grid.Column="1"
-       NavigationUIVisibility="Hidden"
-       Content="{Binding CurrentPage}"/>
+               NavigationUIVisibility="Hidden"
+               Content="{Binding CurrentPage}"/>
 
     </Grid>
 </Window>

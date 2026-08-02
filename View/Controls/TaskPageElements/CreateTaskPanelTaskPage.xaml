@@ -196,7 +196,7 @@
                    Margin="0,0,0,5"/>
 
             <TextBox Text="{Binding NewTaskTitle, UpdateSourceTrigger=PropertyChanged}"
-                 MaxLength="25"
+                 MaxLength="45"
                  Style="{StaticResource InputBoxStyle}"
                  Margin="0,0,0,20"/>
 
@@ -215,6 +215,21 @@
                   SelectedItem="{Binding NewTaskPriority}"
                   Style="{StaticResource ComboStyle}"
                   Margin="0,0,0,25"/>
+
+
+               <!--авав-->
+            <TextBlock Text="Tag" FontWeight="Bold" FontSize="16" />
+            <ComboBox ItemsSource="{Binding AvailableTags}"
+          SelectedItem="{Binding NewTaskTag}"
+          Style="{StaticResource ComboStyle}"
+          Margin="0,0,0,25">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" FontSize="14"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
 
             <!-- Button -->
             <Button Content="Add Task"

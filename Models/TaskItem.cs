@@ -34,10 +34,13 @@ namespace ToDo_Manager.Models
 
         partial void OnIsCompletedChanged(bool oldValue, bool newValue)
         {
-            using var db = new ToDoContext();
+           /* using var db = new ToDoContext();
             db.Tasks.Update(this);
-            db.SaveChanges();
+            db.SaveChanges();*/
         }
+
+        public ICollection<TaskTag> TaskTags { get; set; } = new List<TaskTag>();
+
 
     }
 

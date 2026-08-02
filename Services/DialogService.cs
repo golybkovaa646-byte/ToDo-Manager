@@ -18,10 +18,13 @@ namespace ToDo_Manager.Services
             _messageService = messageService;
         }
 
-        public void EditTask(TaskItem task)
+        public void EditTask(EditTaskViewModel vm)
         {
-            var vm = new EditTaskViewModel(task, _taskService, _messageService);
-            var window = new EditTaskWindow(vm);
+            var window = new EditTaskWindow
+            {
+                DataContext = vm
+            };
+
             window.ShowDialog();
         }
     }

@@ -192,13 +192,13 @@
             <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Title}"
                            FontWeight="SemiBold"
-                           FontSize="16"
+                           FontSize="19"
                            Foreground="Black"
                            TextWrapping="Wrap"/>
 
                 <TextBlock Text="{Binding Description}"
-                           FontSize="13"
-                           Foreground="#444444"
+                           FontSize="15"
+                           Foreground="#666666"
                            MaxWidth="450"
                            TextWrapping="Wrap"
                            TextTrimming="WordEllipsis"
@@ -217,16 +217,42 @@
                         HorizontalAlignment="Right"
                         Margin="0,0,4,0">
 
+                <!-- Теги -->
+                <!-- Теги — цветные плашки (стикеры) -->
+                <ItemsControl ItemsSource="{Binding TaskTags}" Margin="0,0,8,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding Tag.ColorHex}" 
+                    CornerRadius="12" 
+                    Padding="8,2" 
+                    Margin="0,0,6,0"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Tag.Name}" 
+                           Foreground="White" 
+                           FontSize="12" 
+                           FontWeight="SemiBold"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+
                 <!-- Цветной кружок -->
                 <Ellipse Style="{StaticResource PriorityDotStyle}"/>
 
                 <!-- Текст приоритета -->
-                <TextBlock Text="{Binding Priority}"
+                <TextBlock FontSize="17" Text="{Binding Priority}"
                            Style="{StaticResource PriorityTextStyle}"
                            VerticalAlignment="Center"/>
 
                 <!-- Edit -->
-                <Button Width="34" Height="34"
+                <Button Width="44" Height="44"
                         Margin="4,0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -234,13 +260,13 @@
                         ToolTip="Edit"
                         Command="{Binding DataContext.OpenEditWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                         CommandParameter="{Binding}">
-                    <Viewbox Width="14" Height="14">
+                    <Viewbox Width="22" Height="22">
                         <Path Data="M3,17 L17,3 L21,7 L7,21 L3,21 z" Fill="#555"/>
                     </Viewbox>
                 </Button>
 
                 <!-- Delete -->
-                <Button Width="34" Height="34"
+                <Button Width="44" Height="44"
                         Margin="4,0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -248,7 +274,7 @@
                         ToolTip="Delete"
                         Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                         CommandParameter="{Binding}">
-                    <Viewbox Width="14" Height="14">
+                    <Viewbox Width="22" Height="22">
                         <Path Data="M3,6 L21,6 L19,22 L5,22 z M8,6 L8,4 L16,4 L16,6" Fill="#C62828"/>
                     </Viewbox>
                 </Button>

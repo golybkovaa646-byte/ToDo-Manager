@@ -56,7 +56,7 @@ namespace ToDo_Manager.View.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ToDo Manager;component/view/pages/taskspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ToDo Manager;V1.0.0.0;component/view/pages/taskspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Pages\TasksPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

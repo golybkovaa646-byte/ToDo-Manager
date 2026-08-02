@@ -21,7 +21,11 @@ namespace ToDo_Manager.ViewModels
         {
             CurrentPage = new TasksPage();
         }
-
+        [RelayCommand]
+        private void NavigateTags()
+        {
+            CurrentPage = new TagsPage();
+        }
        
     }
 }

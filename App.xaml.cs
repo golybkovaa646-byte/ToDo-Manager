@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Windows;
 using ToDo_Manager.Date;
 using ToDo_Manager.Services;
@@ -18,9 +20,8 @@ namespace ToDo_Manager
             AppHost = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                 
                     services.AddDbContext<ToDoContext>();
-
+                    services.AddSingleton<ITagService, TagService>();
                     services.AddSingleton<IMessageService, MessageService>();
                     services.AddTransient<IDialogService, DialogService>();
                     services.AddTransient<ITaskService, TaskService>();
@@ -28,8 +29,6 @@ namespace ToDo_Manager
                     services.AddDbContextFactory<ToDoContext>();
 
                     services.AddTransient<MainViewModel>();
-
-                
                     services.AddTransient<MainWindow>();
                 })
                 .Build();
@@ -37,10 +36,23 @@ namespace ToDo_Manager
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            await AppHost.StartAsync();
-        
-            var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            try
+            {
+                await AppHost.StartAsync();
+
+                // Initialize database with migrations
+                InitializeDatabase();
+
+                var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Application startup error: {ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
 
             base.OnStartup(e);
         }
@@ -50,8 +62,47 @@ namespace ToDo_Manager
             await AppHost.StopAsync();
             base.OnExit(e);
         }
-        public static T GetService<T>() where T : class
-    => AppHost.Services.GetRequiredService<T>();
 
+        public static T GetService<T>() where T : class
+            => AppHost.Services.GetRequiredService<T>();
+
+        private void InitializeDatabase()
+        {
+            try
+            {
+                using var scope = AppHost.Services.CreateScope();
+                var context = scope.ServiceProvider.GetRequiredService<ToDoContext>();
+
+                // Apply all pending migrations
+                context.ApplyMigrations();
+
+                Console.WriteLine("Database migrations applied successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Database initialization error: {ex.Message}");
+
+                // If migration fails, try to recreate database
+                try
+                {
+                    using var scope = AppHost.Services.CreateScope();
+                    var context = scope.ServiceProvider.GetRequiredService<ToDoContext>();
+
+                    // Delete and recreate database
+                    context.Database.EnsureDeleted();
+                    context.Database.EnsureCreated();
+
+                    Console.WriteLine("Database recreated successfully.");
+                }
+                catch (Exception recreateEx)
+                {
+                    Console.WriteLine($"Failed to recreate database: {recreateEx.Message}");
+                    MessageBox.Show($"Database initialization failed: {recreateEx.Message}",
+                        "Database Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }

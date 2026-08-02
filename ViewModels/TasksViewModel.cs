@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using ToDo_Manager.Models;
 using ToDo_Manager.Services.Interface;
 
@@ -11,8 +13,6 @@ namespace ToDo_Manager.ViewModels
         private readonly ITaskService _taskService;
         private readonly IMessageService _messageService;
         private readonly IDialogService _dialogService;
-
-        
 
         public ObservableCollection<Priority> Priorities { get; } =
             new ObservableCollection<Priority>(Enum.GetValues(typeof(Priority)).Cast<Priority>());
@@ -35,9 +35,13 @@ namespace ToDo_Manager.ViewModels
         public ObservableCollection<TaskItem> Tasks { get; } = new();
         public ObservableCollection<TaskItem> FilteredTasks { get; } = new();
 
+        public ObservableCollection<Tag> AvailableTags { get; } = new();
 
         public int TotalTasksCount => Tasks?.Count ?? 0;
         public int FilteredTasksCount => FilteredTasks?.Count ?? 0;
+
+        [ObservableProperty]
+        private Tag? newTaskTag;
 
         public TasksViewModel(ITaskService taskService, IMessageService messageService, IDialogService dialogService)
         {
@@ -45,7 +49,23 @@ namespace ToDo_Manager.ViewModels
             _messageService = messageService;
             _dialogService = dialogService;
 
+            LoadTags();
             LoadTasks();
+        }
+
+        private async void LoadTags()
+        {
+            try
+            {
+                var tags = await _taskService.GetAllTagsAsync();
+                AvailableTags.Clear();
+                foreach (var tag in tags)
+                    AvailableTags.Add(tag);
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError($"Error loading tags: {ex.Message}");
+            }
         }
 
         partial void OnSelectedFilterPriorityChanged(Priority? oldValue, Priority? newValue)
@@ -69,8 +89,6 @@ namespace ToDo_Manager.ViewModels
 
         private void RefreshFilteredTasks()
         {
-           
-
             FilteredTasks.Clear();
 
             foreach (var t in Tasks)
@@ -81,6 +99,7 @@ namespace ToDo_Manager.ViewModels
                     FilteredTasks.Add(t);
                 }
             }
+
             OnPropertyChanged(nameof(TotalTasksCount));
             OnPropertyChanged(nameof(FilteredTasksCount));
         }
@@ -94,6 +113,7 @@ namespace ToDo_Manager.ViewModels
                 Tasks.Clear();
                 foreach (var item in items)
                     Tasks.Insert(0, item);
+
                 OnPropertyChanged(nameof(TotalTasksCount));
                 RefreshFilteredTasks();
             }
@@ -126,14 +146,22 @@ namespace ToDo_Manager.ViewModels
                     Priority = NewTaskPriority
                 };
 
+                if (NewTaskTag != null)
+                {
+                    task.TaskTags.Add(new TaskTag
+                    {
+                        TagId = NewTaskTag.Id
+                    });
+                }
+
                 await _taskService.AddAsync(task);
-                Tasks.Insert(0, task);
-                OnPropertyChanged(nameof(TotalTasksCount));
-                RefreshFilteredTasks();
+
+                LoadTasks();
 
                 NewTaskDescription = string.Empty;
                 NewTaskTitle = string.Empty;
                 NewTaskPriority = Priority.Medium;
+                NewTaskTag = null;
             }
             catch (Exception ex)
             {
@@ -150,9 +178,7 @@ namespace ToDo_Manager.ViewModels
                     return;
 
                 await _taskService.DeleteAsync(task);
-                Tasks.Remove(task);
-                OnPropertyChanged(nameof(TotalTasksCount));
-                RefreshFilteredTasks();
+                LoadTasks();
             }
             catch (Exception ex)
             {
@@ -163,21 +189,14 @@ namespace ToDo_Manager.ViewModels
         [RelayCommand]
         private void OpenEditWindow(TaskItem task)
         {
-            _dialogService.EditTask(task);
-        }
+            var vm = new EditTaskViewModel(task, _taskService, _messageService);
 
-        [RelayCommand]
-        private async void EditTask(TaskItem task)
-        {
-            try
+            vm.RequestClose += () =>
             {
-                await _taskService.UpdateAsync(task);
-                RefreshFilteredTasks();
-            }
-            catch (Exception ex)
-            {
-                _messageService.ShowError($"Error editing task: {ex.Message}");
-            }
+                LoadTasks();
+            };
+
+            _dialogService.EditTask(vm);
         }
 
         [RelayCommand]
@@ -185,7 +204,6 @@ namespace ToDo_Manager.ViewModels
         {
             if (SelectedFilterPriority == null && ShowCompleted == false)
                 return;
-
 
             SelectedFilterPriority = null;
             ShowCompleted = false;

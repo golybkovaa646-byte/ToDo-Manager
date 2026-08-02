@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "f4D4sH0JADE=",
+  "dgSpecHash": "83PAlsRzAgc=",
   "success": true,
   "projectFilePath": "C:\\Users\\golyb\\OneDrive\\Документы\\GitHub\\ToDo-Manager\\ToDo Manager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\golyb\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.2\\communitytoolkit.mvvm.8.4.2.nupkg.sha512",
+    "C:\\Users\\golyb\\.nuget\\packages\\extended.wpf.toolkit\\5.1.2\\extended.wpf.toolkit.5.1.2.nupkg.sha512",
     "C:\\Users\\golyb\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\golyb\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",
     "C:\\Users\\golyb\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.11.0\\microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",

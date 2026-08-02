@@ -9,8 +9,12 @@ namespace ToDo_Manager.Services.Interface
     {
         Task<List<TaskItem>> GetAllAsync();
         Task AddAsync(TaskItem item);
+        Task<TaskItem?> GetByIdWithTagsAsync(int id);
         Task DeleteAsync(TaskItem item);
         Task UpdateAsync(TaskItem item);
 
+        Task<List<Tag>> GetAllTagsAsync();
+
+        Task SetTagForTaskAsync(int taskItemId, int? tagId);
     }
 }
